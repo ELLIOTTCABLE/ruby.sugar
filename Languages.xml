@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<settings>
+
+	<language id="source.Ruby">
+		
+		<root-zone>sourcecode.rb</root-zone>
+		<name>Ruby</name>
+		<detectors>
+		  <extension>r</extension>
+			<extension>rb</extension>
+			<extension>ruby</extension>
+			<extension>ru</extension>
+		</detectors>
+		
+	</language>
+	
+</settings>

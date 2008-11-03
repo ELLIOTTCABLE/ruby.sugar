@@ -44,6 +44,7 @@
       </ends-with>
       <subzones>
         <zone name="constant.character.escape.ruby">
+          <!-- 'A single-quoted string with \'escape sequences\'' -->
           <expression>\\('|\\)</expression>
           <capture number="0" name="punctuation.definition.string.escape.ruby"/>
         </zone>
@@ -61,9 +62,25 @@
         <capture number="0" name="punctuation.definition.string.end.ruby"/>
       </ends-with>
       <subzones>
+        <!-- "A double-quoted string with\nescape sequences" -->
         <zone name="constant.character.escape.ruby">
           <expression>\\(.)</expression>
           <capture number="0" name="punctuation.definition.string.escape.ruby"/>
+        </zone>
+        
+        <!-- "A double-quoted string with #{interpolations}" -->
+        <zone name="sourcecode.string.interpolation">
+          <starts-with>
+            <expression>(#\{)</expression>
+            <capture number="0" name="punctuation.definition.string.interpolation.begin.ruby"/>
+          </starts-with>
+          <ends-with>
+            <expression>(\})</expression>
+            <capture number="0" name="punctuation.definition.string.interpolation.end.ruby"/>
+          </ends-with>
+          <subzones>
+            <include syntax="sourcecode.ruby"/>
+          </subzones>
         </zone>
       </subzones>
     </zone>

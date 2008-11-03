@@ -50,7 +50,7 @@
       </subzones>
     </zone>
     
-    <!-- "A single-quoted string" -->
+    <!-- "A double-quoted string" -->
     <zone name="sourcecode.string.quoted.double.ruby">
       <starts-with>
         <expression>"</expression>

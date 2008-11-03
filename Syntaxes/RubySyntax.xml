@@ -110,4 +110,10 @@
     </zone>
     
   </zones>
+  
+  <library>
+    <collection name="nothing">
+      
+    </collection>
+  </library>
 </syntax>

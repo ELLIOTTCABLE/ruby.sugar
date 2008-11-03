@@ -33,7 +33,7 @@
     <!-- ========================== -->
     
     <!-- 'A single-quoted string' -->
-    <zone name="sourcecode.string.quoted.single.ruby">
+    <zone name="string.quoted.single.ruby">
       <starts-with>
         <expression>'</expression>
         <capture number="0" name="punctuation.definition.string.begin.ruby"/>
@@ -52,7 +52,7 @@
     </zone>
     
     <!-- "A double-quoted string" -->
-    <zone name="sourcecode.string.quoted.double.ruby">
+    <zone name="string.quoted.double.ruby">
       <starts-with>
         <expression>"</expression>
         <capture number="0" name="punctuation.definition.string.begin.ruby"/>

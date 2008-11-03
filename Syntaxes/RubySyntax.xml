@@ -2,6 +2,10 @@
 <syntax name="sourcecode.ruby">
   <zones>
     
+    <!-- ============ -->
+    <!-- = Comments = -->
+    <!-- ============ -->
+    
     <!-- # A comment -->
     <zone name="comment.line.hash.ruby">
       <expression>(#).*$\n?</expression>
@@ -10,7 +14,7 @@
     
     <!--
       =begin
-      A comment block!
+      A comment block
       =end
     -->
     <zone name="comment.block.ruby">
@@ -24,9 +28,59 @@
       </ends-with>
     </zone>
     
-  </zones>
-  
-  <library>
+    <!-- ========================== -->
+    <!-- = Syntactical constructs = -->
+    <!-- ========================== -->
     
-  </library>
+    <!-- 'A single-quoted string' -->
+    <zone name="sourcecode.string.quoted.single.ruby">
+      <starts-with>
+        <expression>'</expression>
+        <capture number="0" name="punctuation.definition.string.begin.ruby"/>
+      </starts-with>
+      <ends-with>
+        <expression>'</expression>
+        <capture number="0" name="punctuation.definition.string.end.ruby"/>
+      </ends-with>
+      <subzones>
+        <zone name="constant.character.escape.ruby">
+          <expression>\\('|\\)</expression>
+          <capture number="0" name="punctuation.definition.string.escape.ruby"/>
+        </zone>
+      </subzones>
+    </zone>
+    
+    <!-- "A single-quoted string" -->
+    <zone name="sourcecode.string.quoted.double.ruby">
+      <starts-with>
+        <expression>"</expression>
+        <capture number="0" name="punctuation.definition.string.begin.ruby"/>
+      </starts-with>
+      <ends-with>
+        <expression>"</expression>
+        <capture number="0" name="punctuation.definition.string.end.ruby"/>
+      </ends-with>
+      <subzones>
+        <zone name="constant.character.escape.ruby">
+          <expression>\\(.)</expression>
+          <capture number="0" name="punctuation.definition.string.escape.ruby"/>
+        </zone>
+      </subzones>
+    </zone>
+    
+    <!-- ============ -->
+    <!-- = Keywords = -->
+    <!-- ============ -->
+    
+    <!-- true -->
+    <zone name="constant.language.boolean.true.js">
+			<expression>\btrue\b</expression>
+		</zone>
+		
+		<!-- false -->
+		<zone name="constant.language.boolean.false.js">
+			<expression>\bfalse\b</expression>
+		</zone>
+    
+  </zones>
 </syntax>

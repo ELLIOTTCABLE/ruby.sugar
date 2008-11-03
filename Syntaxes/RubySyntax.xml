@@ -85,6 +85,11 @@
       </subzones>
     </zone>
     
+    <!-- 42, 052, 0x2A -->
+    <zone name="constant.numeric.ruby">
+      <expression>\b((0(x|X)[0-9a-fA-F]+)|(0[0-7]+)|((0|[1-9][0-9]*)(\.[0-9]+)?(e-?[0-9]+)?))\b</expression>
+    </zone>
+    
     <!-- ============ -->
     <!-- = Keywords = -->
     <!-- ============ -->

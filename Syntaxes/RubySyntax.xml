@@ -109,6 +109,32 @@
       <expression>\bnil\b</expression>
     </zone>
     
+    <!-- ======== -->
+    <!-- = Meta = -->
+    <!-- ======== -->
+    
+    <zone name="punctuation.terminator.statement.ruby">
+      <expression>\;</expression>
+    </zone>
+    <zone name="meta.delimiter.object.comma.ruby">
+      <expression>,[ |\t]*</expression>
+    </zone>
+    <zone name="meta.delimiter.method.period.ruby">
+      <expression>\.</expression>
+    </zone>
+    <zone name="meta.brace.curly.open.ruby">
+      <expression>\{</expression>
+    </zone>
+    <zone name="meta.brace.curly.close.ruby">
+      <expression>\}</expression>
+    </zone>
+    <zone name="meta.brace.round.ruby">
+      <expression>\(|\)</expression>
+    </zone>
+    <zone name="meta.brace.square.ruby">
+      <expression>\[|\]</expression>
+    </zone>
+    
   </zones>
   
   <library>

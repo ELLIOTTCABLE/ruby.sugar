@@ -62,7 +62,7 @@
         <capture number="0" name="punctuation.definition.string.end.ruby"/>
       </ends-with>
       <subzones>
-        <!-- "A double-quoted string with\nescape sequences" -->
+        <!-- "A double-quoted string with\nescape \"sequences\"" -->
         <zone name="constant.character.escape.ruby">
           <expression>\\(.)</expression>
           <capture number="0" name="punctuation.definition.string.escape.ruby"/>

@@ -9,7 +9,7 @@
     <!-- # A comment -->
     <zone name="comment.line.hash.ruby">
       <expression>(#).*$\n?</expression>
-      <capture number="1" name="punctuation.definition.begin"/>
+      <capture number="1" name="punctuation.definition.comment.line.begin"/>
     </zone>
     
     <!--
@@ -19,12 +19,12 @@
     -->
     <zone name="comment.block.ruby">
       <starts-with>
-        <expression>^(=begin)</expression>
-        <capture number="0" name="punctuation.definition.begin"/>
+        <expression>^(=begin).*$</expression>
+        <capture number="0" name="punctuation.definition.comment.block.begin"/>
       </starts-with>
       <ends-with>
-        <expression>^(=end)</expression>
-        <capture number="0" name="punctuation.definition.end"/>
+        <expression>^(=end).*$</expression>
+        <capture number="0" name="punctuation.definition.comment.block.end"/>
       </ends-with>
     </zone>
     

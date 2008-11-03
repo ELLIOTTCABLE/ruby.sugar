@@ -2,10 +2,11 @@
 
 <settings>
 
-	<language id="source.Ruby">
-		
-		<root-zone>sourcecode.rb</root-zone>
+	<language id="name.elliottcable.Ruby">
 		<name>Ruby</name>
+		
+		<root-zone>sourcecode.ruby</root-zone>
+		
 		<detectors>
 		  <extension>r</extension>
 			<extension>rb</extension>

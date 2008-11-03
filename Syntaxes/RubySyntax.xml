@@ -73,12 +73,12 @@
     <!-- ============ -->
     
     <!-- true -->
-    <zone name="constant.language.boolean.true.js">
+    <zone name="constant.language.boolean.true.ruby">
 			<expression>\btrue\b</expression>
 		</zone>
 		
 		<!-- false -->
-		<zone name="constant.language.boolean.false.js">
+		<zone name="constant.language.boolean.false.ruby">
 			<expression>\bfalse\b</expression>
 		</zone>
     

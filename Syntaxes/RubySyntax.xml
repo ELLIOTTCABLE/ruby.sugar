@@ -69,7 +69,41 @@
         </zone>
         
         <!-- "A double-quoted string with #{interpolations}" -->
-        <zone name="sourcecode.string.interpolation">
+        <zone name="string.interpolation">
+          <starts-with>
+            <expression>(#\{)</expression>
+            <capture number="0" name="punctuation.definition.string.interpolation.begin.ruby"/>
+          </starts-with>
+          <ends-with>
+            <expression>(\})</expression>
+            <capture number="0" name="punctuation.definition.string.interpolation.end.ruby"/>
+          </ends-with>
+          <subzones>
+            <include syntax="sourcecode.ruby"/>
+          </subzones>
+        </zone>
+      </subzones>
+    </zone>
+    
+    <!-- /regular expression/ -->
+    <zone name="string.regexp.ruby">
+      <starts-with>
+        <expression>/</expression>
+        <capture number="0" name="punctuation.definition.string.begin.ruby"/>
+      </starts-with>
+      <ends-with>
+        <expression>/</expression>
+        <capture number="0" name="punctuation.definition.string.end.ruby"/>
+      </ends-with>
+      <subzones>
+        <!-- /a regex with\nescape \/sequences\// -->
+        <zone name="constant.character.escape.ruby">
+          <expression>\\(.)</expression>
+          <capture number="0" name="punctuation.definition.string.escape.ruby"/>
+        </zone>
+        
+        <!-- /a regex with #{interpolations}/ -->
+        <zone name="string.interpolation">
           <starts-with>
             <expression>(#\{)</expression>
             <capture number="0" name="punctuation.definition.string.interpolation.begin.ruby"/>

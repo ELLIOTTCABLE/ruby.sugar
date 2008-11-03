@@ -74,13 +74,13 @@
     
     <!-- true -->
     <zone name="constant.language.boolean.true.ruby">
-			<expression>\btrue\b</expression>
-		</zone>
-		
-		<!-- false -->
-		<zone name="constant.language.boolean.false.ruby">
-			<expression>\bfalse\b</expression>
-		</zone>
+      <expression>\btrue\b</expression>
+    </zone>
+    
+    <!-- false -->
+    <zone name="constant.language.boolean.false.ruby">
+      <expression>\bfalse\b</expression>
+    </zone>
     
   </zones>
 </syntax>

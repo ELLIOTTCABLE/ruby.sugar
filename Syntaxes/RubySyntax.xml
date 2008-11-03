@@ -20,11 +20,11 @@
     <zone name="comment.block.ruby">
       <starts-with>
         <expression>^(=begin).*$</expression>
-        <capture number="0" name="punctuation.definition.comment.block.begin"/>
+        <capture number="1" name="punctuation.definition.comment.block.begin"/>
       </starts-with>
       <ends-with>
         <expression>^(=end).*$</expression>
-        <capture number="0" name="punctuation.definition.comment.block.end"/>
+        <capture number="1" name="punctuation.definition.comment.block.end"/>
       </ends-with>
     </zone>
     

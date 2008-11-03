@@ -8,10 +8,11 @@
 		<root-zone>sourcecode.ruby</root-zone>
 		
 		<detectors>
-		  <extension>r</extension>
-			<extension>rb</extension>
-			<extension>ruby</extension>
-			<extension>ru</extension>
+		  <extension casesensitive="false">r</extension>
+			<extension casesensitive="false">rb</extension>
+			<extension casesensitive="false">ruby</extension>
+			<extension casesensitive="false">ru</extension>
+			<filename casesensitive="true">Rakefile</filename>
 		</detectors>
 		
 	</language>

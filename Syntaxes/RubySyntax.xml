@@ -1,7 +1,29 @@
 <?xml version="1.0"?>
 <syntax name="sourcecode.ruby">
   <zones>
-   
+    
+    <!-- # A comment -->
+    <zone name="comment.line.hash.ruby">
+      <expression>(#).*$\n?</expression>
+      <capture number="1" name="punctuation.definition.begin"/>
+    </zone>
+    
+    <!--
+      =begin
+      A comment block!
+      =end
+    -->
+    <zone name="comment.block.ruby">
+      <starts-with>
+        <expression>^(=begin)</expression>
+        <capture number="0" name="punctuation.definition.begin"/>
+      </starts-with>
+      <ends-with>
+        <expression>^(=end)</expression>
+        <capture number="0" name="punctuation.definition.end"/>
+      </ends-with>
+    </zone>
+    
   </zones>
   
   <library>

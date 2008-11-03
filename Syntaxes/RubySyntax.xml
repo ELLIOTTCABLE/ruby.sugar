@@ -82,5 +82,10 @@
       <expression>\bfalse\b</expression>
     </zone>
     
+    <!-- nil -->
+    <zone name="constant.language.null.ruby">
+      <expression>\bnil\b</expression>
+    </zone>
+    
   </zones>
 </syntax>

@@ -92,8 +92,8 @@
         <capture number="0" name="punctuation.definition.string.begin.ruby"/>
       </starts-with>
       <ends-with>
-        <expression>/</expression>
-        <capture number="0" name="punctuation.definition.string.end.ruby"/>
+        <expression>(/)[igm]*</expression>
+        <capture number="1" name="punctuation.definition.string.end.ruby"/>
       </ends-with>
       <subzones>
         <!-- /a regex with\nescape \/sequences\// -->

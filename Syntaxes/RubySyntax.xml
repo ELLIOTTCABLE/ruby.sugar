@@ -95,11 +95,11 @@
         <!-- "A double-quoted string with #{interpolations}" -->
         <zone name="string.interpolation">
           <starts-with>
-            <expression>(#\{)</expression>
+            <expression>#\{</expression>
             <capture number="0" name="punctuation.definition.string.interpolation.begin.ruby"/>
           </starts-with>
           <ends-with>
-            <expression>(\})</expression>
+            <expression>\}</expression>
             <capture number="0" name="punctuation.definition.string.interpolation.end.ruby"/>
           </ends-with>
           <subzones>
@@ -141,11 +141,11 @@
         <!-- /a regex with #{interpolations}/ -->
         <zone name="string.interpolation">
           <starts-with>
-            <expression>(#\{)</expression>
+            <expression>#\{</expression>
             <capture number="0" name="punctuation.definition.string.interpolation.begin.ruby"/>
           </starts-with>
           <ends-with>
-            <expression>(\})</expression>
+            <expression>\}</expression>
             <capture number="0" name="punctuation.definition.string.interpolation.end.ruby"/>
           </ends-with>
           <subzones>

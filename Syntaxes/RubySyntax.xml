@@ -126,6 +126,18 @@
           <capture number="0" name="punctuation.definition.string.escape.ruby"/>
         </zone>
         
+        <!-- /a regex with(?# comments)/ -->
+        <zone name="string.regexp.comment.block.ruby">
+          <starts-with>
+            <expression>\(\?#</expression>
+            <capture number="0" name="punctuation.definition.string.comment.block.begin.ruby"/>
+          </starts-with>
+          <ends-with>
+            <expression>\)</expression>
+            <capture number="0" name="punctuation.definition.string.comment.block.end.ruby"/>
+          </ends-with>
+        </zone>
+        
         <!-- /a regex with #{interpolations}/ -->
         <zone name="string.interpolation">
           <starts-with>

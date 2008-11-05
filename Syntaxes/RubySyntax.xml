@@ -28,6 +28,30 @@
       </ends-with>
     </zone>
     
+    <!-- ====================== -->
+    <!-- = Syntactical blocks = -->
+    <!-- ====================== -->
+    
+    <!--
+      def something
+        
+      end
+    -->
+    <zone name="function.ruby">
+      <starts-with>
+        <expression>(def)\s+([a-zA-Z_][A-Za-z0-9_-]*)</expression>
+        <capture number="1" name="storage.type.function.block.ruby"/>
+        <capture number="2" name="function.name"/>
+      </starts-with>
+      <ends-with>
+        <expression>end</expression>
+        <capture number="0" name="storage.type.function.block.end.ruby"/>
+      </ends-with>
+      <subzones>
+        <include syntax="sourcecode.ruby"/>
+      </subzones>
+    </zone>
+    
     <!-- ========================== -->
     <!-- = Syntactical constructs = -->
     <!-- ========================== -->

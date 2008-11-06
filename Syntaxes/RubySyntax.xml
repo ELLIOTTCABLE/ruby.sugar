@@ -39,9 +39,10 @@
     -->
     <zone name="function.ruby">
       <starts-with>
-        <expression>(def)\s+([a-zA-Z_][A-Za-z0-9_-]*)</expression>
+        <expression>(def)\s+([a-zA-Z_][A-Za-z0-9_-]*)(.*)</expression>
         <capture number="1" name="storage.type.function.block.ruby"/>
         <capture number="2" name="function.name"/>
+        <capture number="3" name="variable.parameter.function.ruby"/>
       </starts-with>
       <ends-with>
         <expression>end</expression>

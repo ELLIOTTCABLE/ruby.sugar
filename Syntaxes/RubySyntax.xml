@@ -2,9 +2,9 @@
 <syntax name="sourcecode.ruby">
   <zones>
     
-    <!-- ============ -->
-    <!-- = Comments = -->
-    <!-- ============ -->
+    <!-- ============
+         = Comments =
+         ============ -->
     
     <!-- # A comment -->
     <zone name="comment.line.hash.ruby">
@@ -28,9 +28,9 @@
       </ends-with>
     </zone>
     
-    <!-- ====================== -->
-    <!-- = Syntactical blocks = -->
-    <!-- ====================== -->
+    <!-- ======================
+         = Syntactical blocks =
+         ====================== -->
     
     <!--
       def something(arg1, arg2, arg3)
@@ -55,9 +55,9 @@
       </subzones>
     </zone>
     
-    <!-- ========================== -->
-    <!-- = Syntactical constructs = -->
-    <!-- ========================== -->
+    <!-- ==========================
+         = Syntactical constructs =
+         ========================== -->
     
     <!-- 'A single-quoted string' -->
     <zone name="string.quoted.single.ruby">
@@ -163,9 +163,9 @@
       <expression>\b((0(x|X)[0-9a-fA-F]+)|(0[0-7]+)|((0|[1-9][0-9]*)(\.[0-9]+)?(e-?[0-9]+)?))\b</expression>
     </zone>
     
-    <!-- ============ -->
-    <!-- = Keywords = -->
-    <!-- ============ -->
+    <!-- ============
+         = Keywords =
+         ============ -->
     
     <!-- true -->
     <zone name="constant.language.boolean.true.ruby">
@@ -182,9 +182,9 @@
       <expression>\bnil\b</expression>
     </zone>
     
-    <!-- ======== -->
-    <!-- = Meta = -->
-    <!-- ======== -->
+    <!-- ========
+         = Meta =
+         ======== -->
     
     <zone name="punctuation.terminator.statement.ruby">
       <expression>\;</expression>

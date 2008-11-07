@@ -39,7 +39,7 @@
     -->
     <zone name="function.ruby">
       <starts-with>
-        <expression>(def)\s+([a-zA-Z_][A-Za-z0-9_-]*)(?:(\s*(?:\((?=.*\))|\s))([^\)]*)((?:\)|\s)\s*))?</expression>
+        <expression>(def)\s+([a-zA-Z_][A-Za-z0-9_-]*)(?:(\s*(?:\((?=.*\))|\s))([^\)]*)(\)|\s))?</expression>
         <capture number="1" name="storage.type.function.block.ruby"/> <!-- horribly unsemantic name for this, damn you TextMate naming conventions! -->
         <capture number="2" name="function.name"/>
         <capture number="3" name="punctuation.definition.parameters.begin"/>

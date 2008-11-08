@@ -26,6 +26,10 @@ def r regex
     puts '---- ---- ---- ---- ---- ---- ----'
     puts line.inspect
     results = line.match(regex)
+    if results.nil?
+      puts "No match"
+      next
+    end
     puts "Match: #{results[0].inspect}"
     results.captures.each do |capture|
       puts "Capture #{results.captures.index capture}: #{capture.inspect}"

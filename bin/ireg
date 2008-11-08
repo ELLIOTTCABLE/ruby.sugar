@@ -1,0 +1,37 @@
+#!/usr/bin/env ruby19
+require "irb"
+@use = String.new
+
+# You need Ruby 1.9 to use this, due to Ruby 1.9 using Onigurama by default,
+# the same as used by Espresso's Syntax engine.
+
+# This will set what test string is used. Use as follows:
+#     
+#     use <<END
+#     a line of testing text
+#     another line of testing text
+#     END
+#     
+# Each line will be matched against regexen passed to `r`.
+def use string
+  @use = string.gsub(/^\s*\n/, '').gsub(/\n\s*$/, '')
+end
+
+# This will test a regex against some test text defined by `use`.
+def r regex
+  raise 'First use `use`!' if @use.empty?
+  
+  @use.each_line do |line|
+    line.gsub! /\n$/, ''
+    puts '---- ---- ---- ---- ---- ---- ----'
+    puts line.inspect
+    results = line.match(regex)
+    puts "Match: #{results[0].inspect}"
+    results.captures.each do |capture|
+      puts "Capture #{results.captures.index capture}: #{capture.inspect}"
+    end
+  end
+  puts '---- ---- ---- ---- ---- ---- ----'
+end
+
+IRB.start __FILE__

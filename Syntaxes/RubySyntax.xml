@@ -39,6 +39,37 @@
     -->
     <zone name="function.ruby">
       <starts-with>
+        <!--
+          It's worth noting that this regex will, correctly, fail to match an
+          opening paren after a method definition that is *not* followed by a
+          closing paren (which raises questions about the possibility and
+          handling of multi-line argument lists); however, due to shortcomings
+          in the regular expression engine utilized by Espresso (Onigurama),
+          it is impossible to look behind for an opening paren when matching
+          the closing paren (the Onigurama developer[s] deemed it too
+          difficult\costly to implement variable-width lookbehinds, and also
+          failed to take into account the fact that a backreference to a
+          completed, fixed-width capture, is, in fact, not variable-width).
+          
+          Therefore, the first and third below will be correctly matched, and
+          the second will be correctly ignored, but the last will be
+          incorrectly matched:
+              
+              def something(arg1, arg2, arg3)
+              def something(arg1, arg2, arg3
+              def something arg1, arg2, arg3
+              def something arg1, arg2, arg3)
+              
+          Any ideas/fixes regarding this annoying bug would be greatly
+          appreciated. Here's two alternative regexen bits that would work, if
+          Onigurama would support them:
+              
+              /(?<=.*)\)/
+              /(?<=\4)\)/
+              
+          These would replace the closing-paren match (`/\)/`) near the end,
+          in the `parameters.end` capture (`/(\)|\s)/`).
+        -->
         <expression>(def)\s+([a-zA-Z_][A-Za-z0-9_-]*)(?:(\s*(?:\((?=.*\))|\s))([^\)]*)(\)|\s))?</expression>
         <capture number="1" name="storage.type.function.block.ruby"/> <!-- horribly unsemantic name for this, damn you TextMate naming conventions! -->
         <capture number="2" name="function.name"/>

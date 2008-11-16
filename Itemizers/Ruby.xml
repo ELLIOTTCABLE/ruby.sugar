@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<itemizer>
+
+	<recipe name="function.ruby">
+		<class>ESBaseItem</class>
+		<selector>function.ruby:has-child(function.name:capture(name)):capture(itemizer-firstused)</selector>
+		
+		<subrecipes>
+			<include-root-recipes/>
+		</subrecipes>
+	</recipe>
+	
+</itemizer>
+
+

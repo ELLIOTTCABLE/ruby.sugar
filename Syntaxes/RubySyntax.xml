@@ -65,7 +65,7 @@
           Onigurama would support them:
               
               /(?<=.*)\)/
-              /(?<=\4)\)/
+              /(?&lt;=\4)\)/
               
           These would replace the closing-paren match (`/\)/`) near the end,
           in the `parameters.end` capture (`/(\)|\s)/`).

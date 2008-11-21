@@ -280,7 +280,7 @@
         <capture number="2" name="variable.name"/>
       </zone>
       <zone name="variable.global-variable">
-        <expression>(\$)([A-Za-z0-9_]*)</expression>
+        <expression>(\$)(-[A-Za-z0-9_]|[A-Za-z0-9_]*)</expression>
         <capture number="1" name="punctuation.delimiter.global-variable"/>
         <capture number="2" name="variable.name"/>
       </zone>

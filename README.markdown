@@ -42,9 +42,17 @@ TODO
    - Class/module definitions
    - Constants (including nesting)
    - Operators
+   - Octal/Hex, and Control/Meta string escapes.
+   - Heredocs
+   - Symbols
+   - Ranges
+   - Arrays (Might be hard, the syntax is so very simple)
+   - Hashes
+   - Special method names that aren't simple symbols
    - And the hard one: percent-delimited strings. No idea how to do this one.
  - CodeSense
    - Everything!
  - Actions
    - Running Ruby scripts from within Espresso
    - Everything!
+ - All new 1.9 syntax

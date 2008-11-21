@@ -9,7 +9,7 @@
     <!-- # A comment -->
     <zone name="comment.line.hash">
       <expression>(#).*$\n?</expression>
-      <capture number="1" name="punctuation.definition.comment.line.begin"/>
+      <capture number="1" name="punctuation.comment.line.begin"/>
     </zone>
     
     <!--
@@ -19,12 +19,12 @@
     -->
     <zone name="comment.block">
       <starts-with>
-        <expression>^(=begin).*$</expression>
-        <capture number="1" name="punctuation.definition.comment.block.begin"/>
+        <expression>\A=begin</expression>
+        <capture number="0" name="comment.block.begin"/>
       </starts-with>
       <ends-with>
-        <expression>^(=end).*$</expression>
-        <capture number="1" name="punctuation.definition.comment.block.end"/>
+        <expression>\A(=end).*\Z</expression>
+        <capture number="1" name="comment.block.end"/>
       </ends-with>
     </zone>
     
@@ -45,7 +45,7 @@
     <zone name="function.declaration.parenthesis-delimited">
       <starts-with>
         <expression>(def)\s+([a-zA-Z_][A-Za-z0-9_-]*)\s*(\()</expression>
-        <capture number="1" name="keyword.delimiter.function.declaration.begin"/>
+        <capture number="1" name="keyword.function.begin"/>
         <capture number="2" name="function.name"/>
         <capture number="3" name="punctuation.function-parameters.begin"/>
       </starts-with>
@@ -60,7 +60,7 @@
     <zone name="function.declaration.whitespace-delimited">
       <starts-with>
         <expression>(def)\s+([a-zA-Z_][A-Za-z0-9_-]*)\s*(\s)</expression>
-        <capture number="1" name="keyword.delimiter.function.declaration.begin"/>
+        <capture number="1" name="keyword.function.begin"/>
         <capture number="2" name="function.name"/>
         <capture number="3" name="punctuation.function-parameters.begin"/>
       </starts-with>
@@ -81,11 +81,11 @@
     <zone name="string.quoted.single">
       <starts-with>
         <expression>'</expression>
-        <capture number="0" name="punctuation.definition.string.begin"/>
+        <capture number="0" name="punctuation.string.quote.begin"/>
       </starts-with>
       <ends-with>
         <expression>'</expression>
-        <capture number="0" name="punctuation.definition.string.end"/>
+        <capture number="0" name="punctuation.string.quote.end"/>
       </ends-with>
       <subzones>
         <zone name="constant.character.escape">
@@ -100,28 +100,28 @@
     <zone name="string.quoted.double">
       <starts-with>
         <expression>"</expression>
-        <capture number="0" name="punctuation.definition.string.begin"/>
+        <capture number="0" name="punctuation.string.quote.begin"/>
       </starts-with>
       <ends-with>
         <expression>"</expression>
-        <capture number="0" name="punctuation.definition.string.end"/>
+        <capture number="0" name="punctuation.string.quote.end"/>
       </ends-with>
       <subzones>
         <!-- "A double-quoted string with\nescape \"sequences\"" -->
-        <zone name="constant.character.escape">
-          <expression>\\(.)</expression>
-          <capture number="0" name="punctuation.definition.string.escape"/>
+        <zone name="constant.escape-sequence">
+          <expression>\\.</expression>
+          <capture number="0" name="punctuation.escape-sequence"/>
         </zone>
         
         <!-- "A double-quoted string with #{interpolations}" -->
         <zone name="string.interpolation">
           <starts-with>
             <expression>#\{</expression>
-            <capture number="0" name="punctuation.definition.string.interpolation.begin"/>
+            <capture number="0" name="punctuation.interpolation.begin"/>
           </starts-with>
           <ends-with>
             <expression>\}</expression>
-            <capture number="0" name="punctuation.definition.string.interpolation.end"/>
+            <capture number="0" name="punctuation.interpolation.end"/>
           </ends-with>
           <subzones>
             <include syntax="self"/>
@@ -131,43 +131,43 @@
     </zone>
     
     <!-- /regular expression/ -->
-    <zone name="string.regexp">
+    <zone name="string.regex">
       <starts-with>
         <expression>/</expression>
-        <capture number="0" name="punctuation.definition.string.begin"/>
+        <capture number="0" name="punctuation.string.regex.begin"/>
       </starts-with>
       <ends-with>
         <expression>(/)[igm]*</expression>
-        <capture number="1" name="punctuation.definition.string.end"/>
+        <capture number="1" name="punctuation.string.regex.end"/>
       </ends-with>
       <subzones>
         <!-- /a regex with\nescape \/sequences\// -->
-        <zone name="constant.character.escape">
+        <zone name="character.escape-sequence">
           <expression>\\(.)</expression>
-          <capture number="0" name="punctuation.definition.string.escape"/>
+          <capture number="0" name="punctuation.control.escape-sequence"/>
         </zone>
         
         <!-- /a regex with(?# comments)/ -->
-        <zone name="string.regexp.comment.block">
+        <zone name="string.regex.comment">
           <starts-with>
             <expression>\(\?#</expression>
-            <capture number="0" name="punctuation.definition.string.comment.block.begin"/>
+            <capture number="0" name="punctuation.string.regex.comment.begin"/>
           </starts-with>
           <ends-with>
             <expression>\)</expression>
-            <capture number="0" name="punctuation.definition.string.comment.block.end"/>
+            <capture number="0" name="punctuation.string.regex.comment.end"/>
           </ends-with>
         </zone>
         
         <!-- /a regex with #{interpolations}/ -->
-        <zone name="string.interpolation">
+        <zone name="string.regex.interpolation">
           <starts-with>
             <expression>#\{</expression>
-            <capture number="0" name="punctuation.definition.string.interpolation.begin"/>
+            <capture number="0" name="punctuation.interpolation.begin"/>
           </starts-with>
           <ends-with>
             <expression>\}</expression>
-            <capture number="0" name="punctuation.definition.string.interpolation.end"/>
+            <capture number="0" name="punctuation.interpolation.end"/>
           </ends-with>
           <subzones>
             <include syntax="self"/>
@@ -186,7 +186,7 @@
          ================== -->
     
     <!-- end -->
-    <zone name="keyword.flow-control.delimiter.end">
+    <zone name="keyword.flow-control.end">
       <expression>\bend\b</expression>
     </zone>
     
@@ -216,23 +216,29 @@
     <zone name="punctuation.terminator.statement">
       <expression>\;</expression>
     </zone>
-    <zone name="meta.delimiter.object.comma">
-      <expression>,[ |\t]*</expression>
+    <zone name="punctuation.delimiter.comma">
+      <expression>,</expression>
     </zone>
-    <zone name="meta.delimiter.method.period">
+    <zone name="punctuation.delimiter.method-call.period">
       <expression>\.</expression>
     </zone>
-    <zone name="meta.brace.curly.open">
+    <zone name="punctuation.delimiter.brace.curly.open">
       <expression>\{</expression>
     </zone>
-    <zone name="meta.brace.curly.close">
+    <zone name="punctuation.delimiter.brace.curly.close">
       <expression>\}</expression>
     </zone>
-    <zone name="meta.brace.round">
-      <expression>\(|\)</expression>
+    <zone name="punctuation.delimiter.brace.round.open">
+      <expression>\(</expression>
     </zone>
-    <zone name="meta.brace.square">
-      <expression>\[|\]</expression>
+    <zone name="punctuation.delimiter.brace.round.close">
+      <expression>\)</expression>
+    </zone>
+    <zone name="punctuation.delimiter.brace.square.open">
+      <expression>\[</expression>
+    </zone>
+    <zone name="punctuation.delimiter.brace.square.close">
+      <expression>\]</expression>
     </zone>
     
   </zones>
@@ -251,12 +257,12 @@
       <include collection="basic-variable"/>
       <zone name="variable.splat.function-parameter">
         <expression>(\*)([a-z_][A-Za-z0-9_-]*)</expression>
-        <capture number="1" name="punctuation.operator.splat.parameter"/>
+        <capture number="1" name="punctuation.function-parameter-operator.splat"/>
         <capture number="2" name="variable.name"/>
       </zone>
       <zone name="variable.block.function-parameter">
         <expression>(&amp;)([a-z_][A-Za-z0-9_-]*)</expression>
-        <capture number="1" name="punctuation.operator.block.parameter"/>
+        <capture number="1" name="punctuation.function-parameter-operator.block"/>
         <capture number="2" name="variable.name"/>
       </zone>
     </collection>

@@ -7,7 +7,7 @@
          ============ -->
     
     <!-- # A comment -->
-    <zone name="comment.line.hash.ruby">
+    <zone name="comment.line.hash">
       <expression>(#).*$\n?</expression>
       <capture number="1" name="punctuation.definition.comment.line.begin"/>
     </zone>
@@ -17,7 +17,7 @@
       A comment block
       =end
     -->
-    <zone name="comment.block.ruby">
+    <zone name="comment.block">
       <starts-with>
         <expression>^(=begin).*$</expression>
         <capture number="1" name="punctuation.definition.comment.block.begin"/>
@@ -42,10 +42,10 @@
       parenthesis-delimited methods, we have to define two nearly identical
       zones to describe each type.
     -->
-    <zone name="function.declaration.parenthesis-delimited.ruby">
+    <zone name="function.declaration.parenthesis-delimited">
       <starts-with>
         <expression>(def)\s+([a-zA-Z_][A-Za-z0-9_-]*)\s*(\()</expression>
-        <capture number="1" name="keyword.delimiter.function.declaration.begin.ruby"/>
+        <capture number="1" name="keyword.delimiter.function.declaration.begin"/>
         <capture number="2" name="function.name"/>
         <capture number="3" name="punctuation.function-parameters.begin"/>
       </starts-with>
@@ -57,10 +57,10 @@
         <include collection="function-parameters"/>
       </subzones>
     </zone>
-    <zone name="function.declaration.whitespace-delimited.ruby">
+    <zone name="function.declaration.whitespace-delimited">
       <starts-with>
         <expression>(def)\s+([a-zA-Z_][A-Za-z0-9_-]*)\s*(\s)</expression>
-        <capture number="1" name="keyword.delimiter.function.declaration.begin.ruby"/>
+        <capture number="1" name="keyword.delimiter.function.declaration.begin"/>
         <capture number="2" name="function.name"/>
         <capture number="3" name="punctuation.function-parameters.begin"/>
       </starts-with>
@@ -78,50 +78,50 @@
          ========================== -->
     
     <!-- 'A single-quoted string' -->
-    <zone name="string.quoted.single.ruby">
+    <zone name="string.quoted.single">
       <starts-with>
         <expression>'</expression>
-        <capture number="0" name="punctuation.definition.string.begin.ruby"/>
+        <capture number="0" name="punctuation.definition.string.begin"/>
       </starts-with>
       <ends-with>
         <expression>'</expression>
-        <capture number="0" name="punctuation.definition.string.end.ruby"/>
+        <capture number="0" name="punctuation.definition.string.end"/>
       </ends-with>
       <subzones>
-        <zone name="constant.character.escape.ruby">
+        <zone name="constant.character.escape">
           <!-- 'A single-quoted string with \'escape sequences\'' -->
           <expression>\\('|\\)</expression>
-          <capture number="0" name="punctuation.definition.string.escape.ruby"/>
+          <capture number="0" name="punctuation.definition.string.escape"/>
         </zone>
       </subzones>
     </zone>
     
     <!-- "A double-quoted string" -->
-    <zone name="string.quoted.double.ruby">
+    <zone name="string.quoted.double">
       <starts-with>
         <expression>"</expression>
-        <capture number="0" name="punctuation.definition.string.begin.ruby"/>
+        <capture number="0" name="punctuation.definition.string.begin"/>
       </starts-with>
       <ends-with>
         <expression>"</expression>
-        <capture number="0" name="punctuation.definition.string.end.ruby"/>
+        <capture number="0" name="punctuation.definition.string.end"/>
       </ends-with>
       <subzones>
         <!-- "A double-quoted string with\nescape \"sequences\"" -->
-        <zone name="constant.character.escape.ruby">
+        <zone name="constant.character.escape">
           <expression>\\(.)</expression>
-          <capture number="0" name="punctuation.definition.string.escape.ruby"/>
+          <capture number="0" name="punctuation.definition.string.escape"/>
         </zone>
         
         <!-- "A double-quoted string with #{interpolations}" -->
         <zone name="string.interpolation">
           <starts-with>
             <expression>#\{</expression>
-            <capture number="0" name="punctuation.definition.string.interpolation.begin.ruby"/>
+            <capture number="0" name="punctuation.definition.string.interpolation.begin"/>
           </starts-with>
           <ends-with>
             <expression>\}</expression>
-            <capture number="0" name="punctuation.definition.string.interpolation.end.ruby"/>
+            <capture number="0" name="punctuation.definition.string.interpolation.end"/>
           </ends-with>
           <subzones>
             <include syntax="self"/>
@@ -131,31 +131,31 @@
     </zone>
     
     <!-- /regular expression/ -->
-    <zone name="string.regexp.ruby">
+    <zone name="string.regexp">
       <starts-with>
         <expression>/</expression>
-        <capture number="0" name="punctuation.definition.string.begin.ruby"/>
+        <capture number="0" name="punctuation.definition.string.begin"/>
       </starts-with>
       <ends-with>
         <expression>(/)[igm]*</expression>
-        <capture number="1" name="punctuation.definition.string.end.ruby"/>
+        <capture number="1" name="punctuation.definition.string.end"/>
       </ends-with>
       <subzones>
         <!-- /a regex with\nescape \/sequences\// -->
-        <zone name="constant.character.escape.ruby">
+        <zone name="constant.character.escape">
           <expression>\\(.)</expression>
-          <capture number="0" name="punctuation.definition.string.escape.ruby"/>
+          <capture number="0" name="punctuation.definition.string.escape"/>
         </zone>
         
         <!-- /a regex with(?# comments)/ -->
-        <zone name="string.regexp.comment.block.ruby">
+        <zone name="string.regexp.comment.block">
           <starts-with>
             <expression>\(\?#</expression>
-            <capture number="0" name="punctuation.definition.string.comment.block.begin.ruby"/>
+            <capture number="0" name="punctuation.definition.string.comment.block.begin"/>
           </starts-with>
           <ends-with>
             <expression>\)</expression>
-            <capture number="0" name="punctuation.definition.string.comment.block.end.ruby"/>
+            <capture number="0" name="punctuation.definition.string.comment.block.end"/>
           </ends-with>
         </zone>
         
@@ -163,11 +163,11 @@
         <zone name="string.interpolation">
           <starts-with>
             <expression>#\{</expression>
-            <capture number="0" name="punctuation.definition.string.interpolation.begin.ruby"/>
+            <capture number="0" name="punctuation.definition.string.interpolation.begin"/>
           </starts-with>
           <ends-with>
             <expression>\}</expression>
-            <capture number="0" name="punctuation.definition.string.interpolation.end.ruby"/>
+            <capture number="0" name="punctuation.definition.string.interpolation.end"/>
           </ends-with>
           <subzones>
             <include syntax="self"/>
@@ -177,7 +177,7 @@
     </zone>
     
     <!-- 42, 052, 0x2A -->
-    <zone name="constant.numeric.ruby">
+    <zone name="constant.numeric">
       <expression>\b((0(x|X)[0-9a-fA-F]+)|(0[0-7]+)|((0|[1-9][0-9]*)(\.[0-9]+)?(e-?[0-9]+)?))\b</expression>
     </zone>
     
@@ -186,7 +186,7 @@
          ================== -->
     
     <!-- end -->
-    <zone name="keyword.flow-control.delimiter.end.ruby">
+    <zone name="keyword.flow-control.delimiter.end">
       <expression>\bend\b</expression>
     </zone>
     
@@ -195,17 +195,17 @@
          ======================= -->
     
     <!-- true -->
-    <zone name="keyword.boolean.true.ruby">
+    <zone name="keyword.boolean.true">
       <expression>\btrue\b</expression>
     </zone>
     
     <!-- false -->
-    <zone name="keyword.boolean.false.ruby">
+    <zone name="keyword.boolean.false">
       <expression>\bfalse\b</expression>
     </zone>
     
     <!-- nil -->
-    <zone name="keyword.null.ruby">
+    <zone name="keyword.null">
       <expression>\bnil\b</expression>
     </zone>
     
@@ -213,25 +213,25 @@
          = Meta =
          ======== -->
     
-    <zone name="punctuation.terminator.statement.ruby">
+    <zone name="punctuation.terminator.statement">
       <expression>\;</expression>
     </zone>
-    <zone name="meta.delimiter.object.comma.ruby">
+    <zone name="meta.delimiter.object.comma">
       <expression>,[ |\t]*</expression>
     </zone>
-    <zone name="meta.delimiter.method.period.ruby">
+    <zone name="meta.delimiter.method.period">
       <expression>\.</expression>
     </zone>
-    <zone name="meta.brace.curly.open.ruby">
+    <zone name="meta.brace.curly.open">
       <expression>\{</expression>
     </zone>
-    <zone name="meta.brace.curly.close.ruby">
+    <zone name="meta.brace.curly.close">
       <expression>\}</expression>
     </zone>
-    <zone name="meta.brace.round.ruby">
+    <zone name="meta.brace.round">
       <expression>\(|\)</expression>
     </zone>
-    <zone name="meta.brace.square.ruby">
+    <zone name="meta.brace.square">
       <expression>\[|\]</expression>
     </zone>
     
@@ -239,7 +239,7 @@
   
   <library>
     <collection name="basic-variable">
-      <zone name="variable.ruby">
+      <zone name="variable">
         <expression>[a-z_][A-Za-z0-9_-]*</expression>
         <capture number="0" name="variable.name"/>
       </zone>
@@ -249,14 +249,14 @@
     </collection>
     <collection name="function-parameters">
       <include collection="basic-variable"/>
-      <zone name="variable.splat.function-parameter.ruby">
+      <zone name="variable.splat.function-parameter">
         <expression>(\*)([a-z_][A-Za-z0-9_-]*)</expression>
-        <capture number="1" name="punctuation.operator.splat.parameter.ruby"/>
+        <capture number="1" name="punctuation.operator.splat.parameter"/>
         <capture number="2" name="variable.name"/>
       </zone>
-      <zone name="variable.block.function-parameter.ruby">
+      <zone name="variable.block.function-parameter">
         <expression>(&amp;)([a-z_][A-Za-z0-9_-]*)</expression>
-        <capture number="1" name="punctuation.operator.block.parameter.ruby"/>
+        <capture number="1" name="punctuation.operator.block.parameter"/>
         <capture number="2" name="variable.name"/>
       </zone>
     </collection>

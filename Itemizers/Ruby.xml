@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <itemizer>
 
-  <recipe name="function.ruby">
-    <start-selector>function.declaration.ruby:has-child(function.name:capture(name))</start-selector>
-    <end-selector>keyword.delimiter.end.ruby</end-selector>
+  <recipe name="function">
+    <start-selector>function.declaration:has-child(function.name:capture(name))</start-selector>
+    <end-selector>keyword.delimiter.end</end-selector>
     
     <subrecipes>
       <include-root-recipes/>

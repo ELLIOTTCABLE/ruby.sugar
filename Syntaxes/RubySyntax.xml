@@ -28,6 +28,34 @@
       </ends-with>
     </zone>
     
+    <!-- ==================
+         = Block keywords =
+         ================== -->
+    
+    <!-- end -->
+    <zone name="keyword.flow-control.end">
+      <expression>\bend\b</expression>
+    </zone>
+    
+    <!-- =======================
+         = Standalone keywords =
+         ======================= -->
+    
+    <!-- true -->
+    <zone name="keyword.boolean.true">
+      <expression>\btrue\b</expression>
+    </zone>
+    
+    <!-- false -->
+    <zone name="keyword.boolean.false">
+      <expression>\bfalse\b</expression>
+    </zone>
+    
+    <!-- nil -->
+    <zone name="keyword.null">
+      <expression>\bnil\b</expression>
+    </zone>
+    
     <!-- ======================
          = Syntactical blocks =
          ====================== -->
@@ -196,34 +224,6 @@
       <expression>\b(0(?:x|X))([0-9a-fA-F]+)\b</expression>
       <capture number="1" name="numeric.delimiter.hexadecimal.initial-zero-x"/>
       <capture number="2" name="numeric.hexadecimal.value"/>
-    </zone>
-    
-    <!-- ==================
-         = Block keywords =
-         ================== -->
-    
-    <!-- end -->
-    <zone name="keyword.flow-control.end">
-      <expression>\bend\b</expression>
-    </zone>
-    
-    <!-- =======================
-         = Standalone keywords =
-         ======================= -->
-    
-    <!-- true -->
-    <zone name="keyword.boolean.true">
-      <expression>\btrue\b</expression>
-    </zone>
-    
-    <!-- false -->
-    <zone name="keyword.boolean.false">
-      <expression>\bfalse\b</expression>
-    </zone>
-    
-    <!-- nil -->
-    <zone name="keyword.null">
-      <expression>\bnil\b</expression>
     </zone>
     
     <!-- ========

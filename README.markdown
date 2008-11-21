@@ -29,3 +29,15 @@ of highlighting.
 
 This situation will improve when we come up with a set of community standards
 and start adhering to them, until then, hang tight.
+
+TODO
+----
+ - Syntax/Itemizers
+   - Blocks (both begin…end and {}, along with a full description of block
+     arguments in all of their complicated beauty)
+   - Method calls, including arguments and blocks.
+   - Class/module definitions
+   - Constants (including nesting)
+   - Operators
+ - CodeSense
+   - Everything!

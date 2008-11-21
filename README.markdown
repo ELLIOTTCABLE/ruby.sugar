@@ -42,5 +42,6 @@ TODO
    - Class/module definitions
    - Constants (including nesting)
    - Operators
+   - And the hard one: percent-delimited strings. No idea how to do this one.
  - CodeSense
    - Everything!

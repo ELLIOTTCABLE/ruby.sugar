@@ -15,7 +15,7 @@ Clone this project somewhere, with the following:
 And then link it to your syntaxes directory:
     
     mkdir -p "~/Library/Application Support/Espresso/Sugars/"
-    ln -s "$(pwd)/Ruby.sugar" "~/Library/Application Support/Espresso/Sugars/"
+    ln -s "$(pwd)/Ruby.sugar" "/Users/$(whoami)/Library/Application Support/Espresso/Sugars/"
     
 Caveats
 -------

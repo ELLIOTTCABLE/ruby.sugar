@@ -87,7 +87,7 @@
     </zone>
     <zone name="method.declaration.whitespace-delimited">
       <starts-with>
-        <expression>(def)\s+([a-zA-Z_][A-Za-z0-9_]*)\s*(\s)</expression>
+        <expression>(def)\s+([a-zA-Z_][A-Za-z0-9_]*)[ \t]*</expression>
         <capture number="1" name="keyword.method.begin"/>
         <capture number="2" name="method.name"/>
         <capture number="3" name="punctuation.method-parameters.begin"/>

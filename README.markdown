@@ -33,7 +33,10 @@ and start adhering to them, until then, hang tight.
 TODO
 ----
  - Syntax/Itemizers
-   - Blocks (both begin…end and {}, along with a full description of block
+   - All other flow control elements (if/unless…then…else, case…when,
+     begin…end, all of the above plus …rescue…ensure)
+     - Make sure single line uses work as well, including rescue.
+   - Blocks (both do…end and {}, along with a full description of block
      arguments in all of their complicated beauty)
    - Method calls, including arguments and blocks.
    - Class/module definitions

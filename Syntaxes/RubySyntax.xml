@@ -199,7 +199,7 @@
          ================== -->
     
     <!-- end -->
-    <zone name="constant.language.flow.control.delimiter.end.ruby">
+    <zone name="keyword.flow-control.delimiter.end.ruby">
       <expression>\bend\b</expression>
     </zone>
     
@@ -208,17 +208,17 @@
          ======================= -->
     
     <!-- true -->
-    <zone name="constant.language.boolean.true.ruby">
+    <zone name="keyword.boolean.true.ruby">
       <expression>\btrue\b</expression>
     </zone>
     
     <!-- false -->
-    <zone name="constant.language.boolean.false.ruby">
+    <zone name="keyword.boolean.false.ruby">
       <expression>\bfalse\b</expression>
     </zone>
     
     <!-- nil -->
-    <zone name="constant.language.null.ruby">
+    <zone name="keyword.null.ruby">
       <expression>\bnil\b</expression>
     </zone>
     

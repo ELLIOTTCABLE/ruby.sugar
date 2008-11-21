@@ -37,52 +37,39 @@
         
       end
     -->
-    <zone name="function.ruby">
+    <!--
+      For now, due to the intricacies of whitespace-delimited methods versus
+      parenthesis-delimited methods, we have to define two nearly identical
+      zones to describe each type.
+    -->
+    <zone name="function.declaration.parenthesis-delimited.ruby">
       <starts-with>
-        <!--
-          It's worth noting that this regex will, correctly, fail to match an
-          opening paren after a method definition that is *not* followed by a
-          closing paren (which raises questions about the possibility and
-          handling of multi-line argument lists); however, due to shortcomings
-          in the regular expression engine utilized by Espresso (Onigurama),
-          it is impossible to look behind for an opening paren when matching
-          the closing paren (the Onigurama developer[s] deemed it too
-          difficult\costly to implement variable-width lookbehinds, and also
-          failed to take into account the fact that a backreference to a
-          completed, fixed-width capture, is, in fact, not variable-width).
-          
-          Therefore, the first and third below will be correctly matched, and
-          the second will be correctly ignored, but the last will be
-          incorrectly matched:
-              
-              def something(arg1, arg2, arg3)
-              def something(arg1, arg2, arg3
-              def something arg1, arg2, arg3
-              def something arg1, arg2, arg3)
-              
-          Any ideas/fixes regarding this annoying bug would be greatly
-          appreciated. Here's two alternative regexen bits that would work, if
-          Onigurama would support them:
-              
-              /(?<=.*)\)/
-              /(?&lt;=\4)\)/
-              
-          These would replace the closing-paren match (`/\)/`) near the end,
-          in the `parameters.end` capture (`/(\)|\s)/`).
-        -->
-        <expression>(def)\s+([a-zA-Z_][A-Za-z0-9_-]*)(?:(\s*(?:\((?=.*\))|\s))([^\)]*)(\)|\s))?</expression>
-        <capture number="1" name="storage.type.function.block.ruby"/> <!-- horribly unsemantic name for this, damn you TextMate naming conventions! -->
+        <expression>(def)\s+([a-zA-Z_][A-Za-z0-9_-]*)\s*(\()</expression>
+        <capture number="1" name="keyword.delimiter.function.declaration.begin.ruby"/>
         <capture number="2" name="function.name"/>
-        <capture number="3" name="punctuation.definition.parameters.begin"/>
-        <capture number="4" name="variable.parameter.function.ruby"/>
-        <capture number="5" name="punctuation.definition.parameters.end"/>
+        <capture number="3" name="punctuation.parameters.begin"/>
       </starts-with>
       <ends-with>
-        <expression>end</expression>
-        <capture number="0" name="storage.type.function.block.end.ruby"/> <!-- horribly unsemantic name for this, damn you TextMate naming conventions! -->
+        <expression>\)</expression>
+        <capture number="0" name="punctuation.parameters.end"/>
       </ends-with>
       <subzones>
-        <include syntax="sourcecode.ruby"/>
+        <include collection="function-parameters"/>
+      </subzones>
+    </zone>
+    <zone name="function.declaration.whitespace-delimited.ruby">
+      <starts-with>
+        <expression>(def)\s+([a-zA-Z_][A-Za-z0-9_-]*)\s*(\s)</expression>
+        <capture number="1" name="storage.type.function.block.ruby"/>
+        <capture number="2" name="function.name"/>
+        <capture number="3" name="punctuation.function-parameters.begin"/>
+      </starts-with>
+      <ends-with>
+        <expression>\n</expression>
+        <capture number="0" name="punctuation.function-parameters.end"/>
+      </ends-with>
+      <subzones>
+        <include collection="function-parameters"/>
       </subzones>
     </zone>
     
@@ -251,8 +238,27 @@
   </zones>
   
   <library>
-    <collection name="nothing">
-      
+    <collection name="basic-variable">
+      <zone name="variable.ruby">
+        <expression>[a-z_][A-Za-z0-9_-]*</expression>
+        <capture number="0" name="variable.name"/>
+      </zone>
+    </collection>
+    <collection name="variables">
+      <include collection="basic-variable"/>
+    </collection>
+    <collection name="function-parameters">
+      <include collection="basic-variable"/>
+      <zone name="variable.splat.function-parameter.ruby">
+        <expression>(\*)([a-z_][A-Za-z0-9_-]*)</expression>
+        <capture number="1" name="punctuation.operator.splat.parameter.ruby"/>
+        <capture number="2" name="variable.name"/>
+      </zone>
+      <zone name="variable.block.function-parameter.ruby">
+        <expression>(&amp;)([a-z_][A-Za-z0-9_-]*)</expression>
+        <capture number="1" name="punctuation.operator.block.parameter.ruby"/>
+        <capture number="2" name="variable.name"/>
+      </zone>
     </collection>
   </library>
 </syntax>

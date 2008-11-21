@@ -2,8 +2,8 @@
 <itemizer>
 
   <recipe name="function.ruby">
-    <class>ESBaseItem</class>
-    <selector>function.ruby:has-child(function.name:capture(name)):capture(itemizer-firstused)</selector>
+    <start-selector>function.declaration.ruby:has-child(function.name:capture(name))</start-selector>
+    <end-selector>keyword.delimiter.end.ruby</end-selector>
     
     <subrecipes>
       <include-root-recipes/>

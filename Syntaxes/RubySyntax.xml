@@ -139,7 +139,7 @@
         <capture number="0" name="punctuation.string.regex.begin"/>
       </starts-with>
       <ends-with>
-        <expression>(/)[igm]*</expression>
+        <expression>(/)[iomxneus]*</expression>
         <capture number="1" name="punctuation.string.regex.end"/>
       </ends-with>
       <subzones>

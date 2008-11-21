@@ -225,6 +225,11 @@
       <capture number="1" name="numeric.delimiter.hexadecimal.initial-zero-x"/>
       <capture number="2" name="numeric.hexadecimal.value"/>
     </zone>
+    <zone name="numeric.literal.binary">
+      <expression>\b(0(?:b|B))([01]+)\b</expression>
+      <capture number="1" name="numeric.delimiter.binary.initial-zero-b"/>
+      <capture number="2" name="numeric.binary.value"/>
+    </zone>
     
     <!-- ========
          = Meta =

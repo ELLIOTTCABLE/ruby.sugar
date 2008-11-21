@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <itemizer>
 
-  <recipe name="function">
-    <start-selector>function.declaration:has-child(function.name:capture(name))</start-selector>
+  <recipe name="method">
+    <start-selector>method.declaration:has-child(method.name:capture(name))</start-selector>
     <end-selector>keyword.flow-control.end</end-selector>
     
     <subrecipes>

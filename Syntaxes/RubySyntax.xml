@@ -42,34 +42,34 @@
       parenthesis-delimited methods, we have to define two nearly identical
       zones to describe each type.
     -->
-    <zone name="function.declaration.parenthesis-delimited">
+    <zone name="method.declaration.parenthesis-delimited">
       <starts-with>
         <expression>(def)\s+([a-zA-Z_][A-Za-z0-9_-]*)\s*(\()</expression>
-        <capture number="1" name="keyword.function.begin"/>
-        <capture number="2" name="function.name"/>
-        <capture number="3" name="punctuation.function-parameters.begin"/>
+        <capture number="1" name="keyword.method.begin"/>
+        <capture number="2" name="method.name"/>
+        <capture number="3" name="punctuation.method-parameters.begin"/>
       </starts-with>
       <ends-with>
         <expression>\)</expression>
-        <capture number="0" name="punctuation.function-parameters.end"/>
+        <capture number="0" name="punctuation.method-parameters.end"/>
       </ends-with>
       <subzones>
-        <include collection="function-parameters"/>
+        <include collection="method-parameters"/>
       </subzones>
     </zone>
-    <zone name="function.declaration.whitespace-delimited">
+    <zone name="method.declaration.whitespace-delimited">
       <starts-with>
         <expression>(def)\s+([a-zA-Z_][A-Za-z0-9_-]*)\s*(\s)</expression>
-        <capture number="1" name="keyword.function.begin"/>
-        <capture number="2" name="function.name"/>
-        <capture number="3" name="punctuation.function-parameters.begin"/>
+        <capture number="1" name="keyword.method.begin"/>
+        <capture number="2" name="method.name"/>
+        <capture number="3" name="punctuation.method-parameters.begin"/>
       </starts-with>
       <ends-with>
         <expression>\n</expression>
-        <capture number="0" name="punctuation.function-parameters.end"/>
+        <capture number="0" name="punctuation.method-parameters.end"/>
       </ends-with>
       <subzones>
-        <include collection="function-parameters"/>
+        <include collection="method-parameters"/>
       </subzones>
     </zone>
     
@@ -253,16 +253,16 @@
     <collection name="variables">
       <include collection="basic-variable"/>
     </collection>
-    <collection name="function-parameters">
+    <collection name="method-parameters">
       <include collection="basic-variable"/>
-      <zone name="variable.splat.function-parameter">
+      <zone name="variable.splat.method-parameter">
         <expression>(\*)([a-z_][A-Za-z0-9_-]*)</expression>
-        <capture number="1" name="punctuation.function-parameter-operator.splat"/>
+        <capture number="1" name="punctuation.method-parameter-operator.splat"/>
         <capture number="2" name="variable.name"/>
       </zone>
-      <zone name="variable.block.function-parameter">
+      <zone name="variable.block.method-parameter">
         <expression>(&amp;)([a-z_][A-Za-z0-9_-]*)</expression>
-        <capture number="1" name="punctuation.function-parameter-operator.block"/>
+        <capture number="1" name="punctuation.method-parameter-operator.block"/>
         <capture number="2" name="variable.name"/>
       </zone>
     </collection>

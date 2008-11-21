@@ -77,6 +77,8 @@
          = Syntactical constructs =
          ========================== -->
     
+    <include collection="variables"/>
+    
     <!-- 'A single-quoted string' -->
     <zone name="string.quoted.single">
       <starts-with>
@@ -267,6 +269,21 @@
     </collection>
     <collection name="variables">
       <include collection="basic-variable"/>
+      <zone name="variable.instance-variable">
+        <expression>(?<=@)(@)([A-Za-z0-9_-]*)</expression>
+        <capture number="1" name="punctuation.delimiter.instance-variable"/>
+        <capture number="2" name="variable.name"/>
+      </zone>
+      <zone name="variable.class-variable">
+        <expression>(@@)([A-Za-z0-9_-]*)</expression>
+        <capture number="1" name="punctuation.delimiter.class-variable"/>
+        <capture number="2" name="variable.name"/>
+      </zone>
+      <zone name="variable.global-variable">
+        <expression>(\$)([A-Za-z0-9_-]*)</expression>
+        <capture number="1" name="punctuation.delimiter.global-variable"/>
+        <capture number="2" name="variable.name"/>
+      </zone>
     </collection>
     <collection name="method-parameters">
       <include collection="basic-variable"/>

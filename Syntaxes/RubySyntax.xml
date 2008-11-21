@@ -44,7 +44,7 @@
     -->
     <zone name="method.declaration.parenthesis-delimited">
       <starts-with>
-        <expression>(def)\s+([a-zA-Z_][A-Za-z0-9_-]*)\s*(\()</expression>
+        <expression>(def)\s+([a-zA-Z_][A-Za-z0-9_]*)\s*(\()</expression>
         <capture number="1" name="keyword.method.begin"/>
         <capture number="2" name="method.name"/>
         <capture number="3" name="punctuation.method-parameters.begin"/>
@@ -59,7 +59,7 @@
     </zone>
     <zone name="method.declaration.whitespace-delimited">
       <starts-with>
-        <expression>(def)\s+([a-zA-Z_][A-Za-z0-9_-]*)\s*(\s)</expression>
+        <expression>(def)\s+([a-zA-Z_][A-Za-z0-9_]*)\s*(\s)</expression>
         <capture number="1" name="keyword.method.begin"/>
         <capture number="2" name="method.name"/>
         <capture number="3" name="punctuation.method-parameters.begin"/>
@@ -263,24 +263,24 @@
   <library>
     <collection name="basic-variable">
       <zone name="variable">
-        <expression>[a-z_][A-Za-z0-9_-]*</expression>
+        <expression>[a-z_][A-Za-z0-9_]*</expression>
         <capture number="0" name="variable.name"/>
       </zone>
     </collection>
     <collection name="variables">
       <include collection="basic-variable"/>
       <zone name="variable.instance-variable">
-        <expression>(@)([A-Za-z0-9_-]*)</expression>
+        <expression>(@)([A-Za-z0-9_]*)</expression>
         <capture number="1" name="punctuation.delimiter.instance-variable"/>
         <capture number="2" name="variable.name"/>
       </zone>
       <zone name="variable.class-variable">
-        <expression>(@@)([A-Za-z0-9_-]*)</expression>
+        <expression>(@@)([A-Za-z0-9_]*)</expression>
         <capture number="1" name="punctuation.delimiter.class-variable"/>
         <capture number="2" name="variable.name"/>
       </zone>
       <zone name="variable.global-variable">
-        <expression>(\$)([A-Za-z0-9_-]*)</expression>
+        <expression>(\$)([A-Za-z0-9_]*)</expression>
         <capture number="1" name="punctuation.delimiter.global-variable"/>
         <capture number="2" name="variable.name"/>
       </zone>
@@ -288,12 +288,12 @@
     <collection name="method-parameters">
       <include collection="basic-variable"/>
       <zone name="variable.splat.method-parameter">
-        <expression>(\*)([a-z_][A-Za-z0-9_-]*)</expression>
+        <expression>(\*)([a-z_][A-Za-z0-9_]*)</expression>
         <capture number="1" name="punctuation.method-parameter-operator.splat"/>
         <capture number="2" name="variable.name"/>
       </zone>
       <zone name="variable.block.method-parameter">
-        <expression>(&amp;)([a-z_][A-Za-z0-9_-]*)</expression>
+        <expression>(&amp;)([a-z_][A-Za-z0-9_]*)</expression>
         <capture number="1" name="punctuation.method-parameter-operator.block"/>
         <capture number="2" name="variable.name"/>
       </zone>

@@ -45,3 +45,6 @@ TODO
    - And the hard one: percent-delimited strings. No idea how to do this one.
  - CodeSense
    - Everything!
+ - Actions
+   - Running Ruby scripts from within Espresso
+   - Everything!

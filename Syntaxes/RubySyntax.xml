@@ -177,8 +177,23 @@
     </zone>
     
     <!-- 42, 052, 0x2A -->
-    <zone name="constant.numeric">
-      <expression>\b((0(x|X)[0-9a-fA-F]+)|(0[0-7]+)|((0|[1-9][0-9]*)(\.[0-9]+)?(e-?[0-9]+)?))\b</expression>
+    <zone name="numeric.literal.decimal">
+      <expression>\b(0|[1-9][0-9]*)(?:(\.)([0-9]+))?(?:(e|E)(-?[0-9]+))?\b</expression>
+      <capture number="1" name="numeric.decimal.integral.value"/>
+      <capture number="2" name="punctuation.delimiter.period.numeric.decimal.radix-point"/>
+      <capture number="3" name="numeric.decimal.fractional.value"/>
+      <capture number="4" name="delimiter.numeric.decimal.exponential"/>
+      <capture number="5" name="numeric.decimal.exponential.value"/>
+    </zone>
+    <zone name="numeric.literal.octal">
+      <expression>\b(0)([0-7]+)\b</expression>
+      <capture number="1" name="numeric.delimiter.octal.initial-zero"/>
+      <capture number="2" name="numeric.octal.value"/>
+    </zone>
+    <zone name="numeric.literal.hexadecimal">
+      <expression>\b(0(?:x|X))([0-9a-fA-F]+)\b</expression>
+      <capture number="1" name="numeric.delimiter.hexadecimal.initial-zero-x"/>
+      <capture number="2" name="numeric.hexadecimal.value"/>
     </zone>
     
     <!-- ==================

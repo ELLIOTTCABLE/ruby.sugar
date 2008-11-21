@@ -2,7 +2,6 @@
 <itemizer>
 
   <recipe name="method">
-    <class>ESCodeBlockItem</class>
     <start-selector>method.declaration:has-child(method.name:capture(name))</start-selector>
     <end-selector>keyword.flow-control.end</end-selector>
     

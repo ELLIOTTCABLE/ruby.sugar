@@ -19,13 +19,13 @@ And then link it to your syntaxes directory:
     
 Caveats
 -------
-As of 0.9b1, Espresso only supports one sort of syntax highlighting (that
-which is delivered with Espresso), and it's very rudimentary. For instance,
-the highlight that appears on function names *only* applies to items of
-`name="*.name.*"` that appear underneath items of `name="*.function.*"`. This
-means that, although I'd like to have class names highlighted where they
-appear, I can't really do so without losing semanticity. Therefore this Sugar
-won't really *look* very complete if you install it, as things you might
-expect to be highlighted (such as aforementioned class names) won't be.
+The naming conventions among Sugar developers and themers aren't really
+concrete as of yet. Thus, there's a good chance that a given theme won't be
+able to show all of the data about a a given file that is associated with a
+given sugar as of yet. Specifically, the default theme that is currently being
+distributed with the Espresso previews can't handle this Sugar - if you just
+plug this Sugar into Espresso, you won't see much interesting stuff in the way
+of highlighting.
 
-I guess we've just gotta wait for the next beta!
+This situation will improve when we come up with a set of community standards
+and start adhering to them, until then, hang tight.

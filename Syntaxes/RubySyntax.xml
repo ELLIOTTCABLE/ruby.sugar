@@ -137,7 +137,7 @@
             <capture number="0" name="punctuation.definition.string.interpolation.end.ruby"/>
           </ends-with>
           <subzones>
-            <include syntax="sourcecode.ruby"/>
+            <include syntax="self"/>
           </subzones>
         </zone>
       </subzones>
@@ -183,7 +183,7 @@
             <capture number="0" name="punctuation.definition.string.interpolation.end.ruby"/>
           </ends-with>
           <subzones>
-            <include syntax="sourcecode.ruby"/>
+            <include syntax="self"/>
           </subzones>
         </zone>
       </subzones>

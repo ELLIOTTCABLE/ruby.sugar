@@ -270,7 +270,7 @@
     <collection name="variables">
       <include collection="basic-variable"/>
       <zone name="variable.instance-variable">
-        <expression>(?<=@)(@)([A-Za-z0-9_-]*)</expression>
+        <expression>(@)([A-Za-z0-9_-]*)</expression>
         <capture number="1" name="punctuation.delimiter.instance-variable"/>
         <capture number="2" name="variable.name"/>
       </zone>

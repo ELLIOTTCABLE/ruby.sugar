@@ -2,7 +2,7 @@
 <injections>
   
   <!-- /a regex with #{interpolations}/ -->
-	<injection name="injections.expression.regex.ruby.interpolation" selector="expression.regex" action="insert-before-children">
+	<injection name="regex.injections.ruby.interpolation" selector="literal.character.escape" action="attach-after-target">
     <zone name="string.regex.interpolation">
       <starts-with>
         <expression>#\{</expression>

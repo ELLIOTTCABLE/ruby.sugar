@@ -8,6 +8,9 @@ A simple first stab at a Sugar for the [Espresso text editor][espresso] for
 
 Using
 -----
+First install any and all dependencies, listed below. The instructions for
+doing so can be found on their respective homes.
+
 Clone this project somewhere, with the following:
     
     git clone git://github.com/elliottcable/ruby.sugar.git ./Ruby.sugar
@@ -17,6 +20,10 @@ And then link it to your syntaxes directory:
     mkdir -p "~/Library/Application Support/Espresso/Sugars/"
     ln -s "$(pwd)/Ruby.sugar" "/Users/$(whoami)/Library/Application Support/Espresso/Sugars/"
     
+Dependencies
+------------
+- [Regex.sugar](http://github.com/elliottcable/Regex.sugar "elliottcable's Regex.sugar on GitHub")
+
 Caveats
 -------
 The naming conventions among Sugar developers and themers aren't really
@@ -42,6 +49,7 @@ TODO
    - Class/module definitions
    - Constants (including nesting)
    - Operators
+   - Fix the regular expression interpolation SyntaxInjection
    - Octal/Hex, and Control/Meta string escapes.
    - Heredocs
    - Symbols

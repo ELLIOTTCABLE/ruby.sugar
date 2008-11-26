@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<injections>
+  
+  <!-- /a regex with #{interpolations}/ -->
+	<injection name="injections.expression.regex.ruby.interpolation" selector="expression.regex" action="insert-before-children">
+    <zone name="string.regex.interpolation">
+      <starts-with>
+        <expression>#\{</expression>
+        <capture number="0" name="punctuation.interpolation.begin"/>
+      </starts-with>
+      <ends-with>
+        <expression>\}</expression>
+        <capture number="0" name="punctuation.interpolation.end"/>
+      </ends-with>
+      <subzones>
+        
+      </subzones>
+    </zone>
+	</injection>
+  
+</injections>

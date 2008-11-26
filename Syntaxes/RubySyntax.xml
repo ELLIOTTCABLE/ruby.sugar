@@ -171,38 +171,7 @@
         <capture number="1" name="punctuation.string.regex.end"/>
       </ends-with>
       <subzones>
-        <!-- /a regex with\nescape \/sequences\// -->
-        <zone name="character.escape-sequence">
-          <expression>\\(.)</expression>
-          <capture number="0" name="punctuation.control.escape-sequence"/>
-        </zone>
-        
-        <!-- /a regex with(?# comments)/ -->
-        <zone name="string.regex.comment">
-          <starts-with>
-            <expression>\(\?#</expression>
-            <capture number="0" name="punctuation.string.regex.comment.begin"/>
-          </starts-with>
-          <ends-with>
-            <expression>\)</expression>
-            <capture number="0" name="punctuation.string.regex.comment.end"/>
-          </ends-with>
-        </zone>
-        
-        <!-- /a regex with #{interpolations}/ -->
-        <zone name="string.regex.interpolation">
-          <starts-with>
-            <expression>#\{</expression>
-            <capture number="0" name="punctuation.interpolation.begin"/>
-          </starts-with>
-          <ends-with>
-            <expression>\}</expression>
-            <capture number="0" name="punctuation.interpolation.end"/>
-          </ends-with>
-          <subzones>
-            <include syntax="self"/>
-          </subzones>
-        </zone>
+        <include syntax="expression.regex"/>
       </subzones>
     </zone>
     

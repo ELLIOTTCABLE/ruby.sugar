@@ -49,7 +49,8 @@ TODO
   - Class/module definitions
   - Constants (including nesting)
   - Operators
-  - Fix the regular expression interpolation SyntaxInjection
+  - Fix the regular expression interpolation SyntaxInjection such that
+    interpolations work inside other regex structures, such as groups
   - Octal/Hex, and Control/Meta string escapes.
   - Heredocs
   - Symbols

@@ -43,6 +43,9 @@ TODO
   - All other flow control elements (if/unless…then…else, case…when,
     begin…end, all of the above plus …rescue…ensure)
     - Make sure single line uses work as well, including rescue.
+  - 'Fix' the whole method- and block-arguments thing, it's really inadequate
+    right now. It really should be *describing* what arguments allow, not just
+    pulling in the variable collection (for the most part).
   - Method calls, including arguments and blocks.
   - Class/module definitions
   - Constants (including nesting)

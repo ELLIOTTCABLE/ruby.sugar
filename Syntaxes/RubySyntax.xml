@@ -61,6 +61,50 @@
          ====================== -->
     
     <!--
+      something do |foo, bar, *gaz|
+
+      end
+    -->
+    <!--
+      For now, due to the intricacies of keyword-delimited blocks versus
+      bracket-delimited blocks, as well as those of blocks with arguments
+      versus those without, we have to define several nearly identical zones
+      to describe each type.
+    -->
+    <zone name="block.declaration.keyword-delimited.with-arguments">
+      <starts-with>
+        <expression>(do)\s*(\|)</expression>
+        <capture number="1" name="keyword.block.begin"/>
+        <capture number="2" name="punctuation.block-parameters.begin"/>
+      </starts-with>
+      <ends-with>
+        <expression>\|</expression>
+        <capture number="0" name="keyword.block-parameters.end"/>
+      </ends-with>
+      <subzones>
+        <include collection="block-parameters"/>
+      </subzones>
+    </zone>
+    <zone name="block.declaration.bracket-delimited.with-arguments">
+      <starts-with>
+        <expression>(\{)\s*(\|)</expression>
+        <capture number="1" name="punctuation.block.begin"/>
+        <capture number="2" name="punctuation.block-parameters.begin"/>
+      </starts-with>
+      <ends-with>
+        <expression>\|</expression>
+        <capture number="0" name="keyword.block-parameters.end"/>
+      </ends-with>
+      <subzones>
+        <include collection="block-parameters"/>
+      </subzones>
+    </zone>
+    <zone name="block.declaration.keyword-delimited.without-arguments">
+      <expression>do</expression>
+      <capture number="0" name="keyword.block.begin"/>
+    </zone>
+    
+    <!--
       def something(arg1, arg2, arg3)
         
       end
@@ -256,6 +300,14 @@
       <zone name="variable.global-variable">
         <expression>(\$)(.|-[A-Za-z0-9_]|[A-Za-z0-9_]*)</expression>
         <capture number="1" name="punctuation.delimiter.global-variable"/>
+        <capture number="2" name="variable.name"/>
+      </zone>
+    </collection>
+    <collection name="block-parameters">
+      <include collection="basic-variable"/>
+      <zone name="variable.splat.block-parameter">
+        <expression>(\*)([a-z_][A-Za-z0-9_]*)</expression>
+        <capture number="1" name="punctuation.block-parameter-operator.splat"/>
         <capture number="2" name="variable.name"/>
       </zone>
     </collection>

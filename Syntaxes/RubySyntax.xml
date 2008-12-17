@@ -36,6 +36,27 @@
     <zone name="keyword.flow-control.end">
       <expression>\bend\b</expression>
     </zone>
+		<zone name="keyword.flow-control.if">
+      <expression>\bif\b</expression>
+    </zone>
+		<zone name="keyword.flow-control.case">
+      <expression>\bcase\b</expression>
+    </zone>
+		<zone name="keyword.flow-control.then">
+      <expression>\bthen\b</expression>
+    </zone>
+		<zone name="keyword.flow-control.else">
+      <expression>\belse\b</expression>
+    </zone>
+		<zone name="keyword.flow-control.elsif">
+      <expression>\belsif\b</expression>
+    </zone>
+		<zone name="keyword.flow-control.and">
+      <expression>\band\b|&amp;|&amp;&amp;</expression>
+    </zone>
+		<zone name="keyword.flow-control.or">
+      <expression>\bor\b|\|\|</expression>
+    </zone>
     
     <!-- =======================
          = Standalone keywords =
@@ -55,6 +76,29 @@
     <zone name="keyword.null">
       <expression>\bnil\b</expression>
     </zone>
+
+		<!-- => -->
+		<zone name="keyword.hashrocket">
+      <expression>=></expression>
+    </zone>
+
+
+		<!-- ======================
+         = Operators =
+         ====================== -->
+		<zone name="keyword.operator.comparison">
+	  	<expression>===|==|&lt;|&lt;=|&gt;|&gt;=</expression>
+	  </zone> 
+
+		<zone name="keyword.operator.assignment">
+      <expression>=|&lt;&lt;|&gt;&gt;</expression>
+    </zone>
+	
+		<zone name="keyword.operator.math">
+	  	<expression>\+|\-|\*|\\|%</expression>
+	  </zone>
+
+
     
     <!-- ======================
          = Syntactical blocks =
@@ -116,7 +160,7 @@
     -->
     <zone name="method.declaration.parenthesis-delimited">
       <starts-with>
-        <expression>(def)\s+([a-zA-Z_][A-Za-z0-9_]*)\s*(\()</expression>
+        <expression>(def)\s+([a-zA-Z_][\.A-Za-z0-9_]*[\?\!]?)\s*=?(\()</expression>
         <capture number="1" name="keyword.method.begin"/>
         <capture number="2" name="method.name"/>
         <capture number="3" name="punctuation.method-parameters.begin"/>
@@ -131,7 +175,7 @@
     </zone>
     <zone name="method.declaration.whitespace-delimited">
       <starts-with>
-        <expression>(def)\s+([a-zA-Z_][A-Za-z0-9_]*)[ \t]*</expression>
+        <expression>(def)\s+([a-zA-Z_][\.A-Za-z0-9_]*[\?\!]?)[ \t]*</expression>
         <capture number="1" name="keyword.method.begin"/>
         <capture number="2" name="method.name"/>
         <capture number="3" name="punctuation.method-parameters.begin"/>
@@ -290,6 +334,11 @@
       <zone name="variable.instance-variable">
         <expression>(@)([A-Za-z0-9_]*)</expression>
         <capture number="1" name="punctuation.delimiter.instance-variable"/>
+        <capture number="2" name="variable.name"/>
+      </zone>
+			<zone name="variable.symbol">
+        <expression>(:)([A-Za-z0-9_]*[\?\!]?)</expression>
+        <capture number="1" name="punctuation.delimiter.symbol"/>
         <capture number="2" name="variable.name"/>
       </zone>
       <zone name="variable.class-variable">

@@ -15,6 +15,19 @@
       <filename casesensitive="true">Rakefile</filename>
     </detectors>
     
+    
+    
   </language>
+  
+  <meta>
+    <name>Ruby</name>
+    <author>elliottcable</author>
+    <identifier>name.elliottcable.Sugar.Ruby</identifier>
+    <download format="raw">file:///Users/elliottcable/Code/ruby.sugar</download>
+    <url>http://github.com/elliottcable/ruby.sugar</url>
+    <dependencies>
+      <dependency id="name.elliottcable.Sugar.Regex">Regex</dependency>
+    </dependencies>
+  </meta>
   
 </settings>

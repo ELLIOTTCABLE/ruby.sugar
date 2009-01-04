@@ -21,6 +21,7 @@
   
   <meta>
     <name>Ruby</name>
+    <description>A sugar that fully describes the Ruby language, and provides easy methods with which to work with Ruby source code</description>
     <author>elliottcable</author>
     <identifier>name.elliottcable.Sugar.Ruby</identifier>
     <download format="git">git://github.com/elliottcable/ruby.sugar.git</download>

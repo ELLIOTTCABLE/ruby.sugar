@@ -23,7 +23,7 @@
     <name>Ruby</name>
     <author>elliottcable</author>
     <identifier>name.elliottcable.Sugar.Ruby</identifier>
-    <download format="raw">file:///Users/elliottcable/Code/ruby.sugar</download>
+    <download format="git">git://github.com/elliottcable/ruby.sugar.git</download>
     <url>http://github.com/elliottcable/ruby.sugar</url>
     <dependencies>
       <dependency id="name.elliottcable.Sugar.Regex">Regex</dependency>

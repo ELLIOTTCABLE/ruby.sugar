@@ -1,392 +1,418 @@
 <?xml version="1.0"?>
 <syntax name="sourcecode.ruby">
+  <!--
+    We break this document down into a huge library of collections, and an
+    utterly simplistic primary zones section that does nothing more than
+    `include` the correct collections in the correct order. This allows us to
+    re-use groups of zones easily, as well as allowing us to order the
+    elements of the document however we want to, without having to worry too
+    much about precedance (since we can re-order the include statements
+    however we need to, to preserve the precedence of syntax elements'
+    matching rules).
+  -->
   <zones>
+    <include collection="metadata.comment"/>
+    <include collection="keyword.control"/>
+    <include collection="literal.keyword"/>
+    <include collection="operator"/>
+    <include collection="container.block"/>
+    <include collection="container.function"/>
+    <include collection="literal.string"/>
+    <include collection="literal.regex"/>
+    <include collection="literal.numeric"/>
+    <include collection="delimiter"/>
+  </zones>
+  <library>
     
     <!-- ============
-         = Comments =
+         = Literals =
          ============ -->
     
-    <!-- # A comment -->
-    <zone name="metadata.comment.line">
-      <expression>(#).*$\n?</expression>
-      <capture number="1" name="metadata.comment.line.hash"/>
-    </zone>
+    <collection name="literal.string">
+      <!-- 'A single-quoted string' -->
+      <zone name="literal.string.quoted.single">
+        <starts-with>
+          <expression>'</expression>
+          <capture number="0" name="begin"/>
+        </starts-with>
+        <ends-with>
+          <expression>'</expression>
+          <capture number="0" name="end"/>
+        </ends-with>
+        <subzones>
+          <zone name="literal.escape.brief">
+            <!-- 'A single-quoted string with \'escape sequences\'' -->
+            <expression>(\\)('|\\)</expression>
+            <capture number="1" name="delimiter.seperator.escape"/>
+            <capture number="2" name="character"/>
+          </zone>
+        </subzones>
+      </zone>
+      <!-- "A double-quoted string" -->
+      <zone name="literal.string.quoted.double">
+        <starts-with>
+          <expression>"</expression>
+          <capture number="0" name="begin"/>
+        </starts-with>
+        <ends-with>
+          <expression>"</expression>
+          <capture number="0" name="end"/>
+        </ends-with>
+        <subzones>
+          <!-- "A double-quoted string with\nescape \"sequences\"" -->
+          <zone name="literal.escape.extended">
+            <expression>\\.</expression>
+            <capture number="1" name="delimiter.seperator.escape"/>
+            <capture number="2" name="character"/>
+          </zone>
+          <!-- "A double-quoted string with #{interpolations}" -->
+          <zone name="string.interpolation">
+            <starts-with>
+              <expression>#(\{)</expression>
+              <capture number="1" name="delimiter.balanced.curly-brace.begin"/>
+            </starts-with>
+            <ends-with>
+              <expression>\}</expression>
+              <capture number="0" name="delimiter.balanced.curly-brace.end"/>
+            </ends-with>
+            <subzones>
+              <include syntax="sourcecode.ruby"/>
+            </subzones>
+          </zone>
+        </subzones>
+      </zone>
+      <zone name="literal.symbol">
+        <expression>:([A-Za-z0-9_]*[\?\!]?)</expression>
+        <capture number="1" name="symbol.name"/>
+      </zone>
+    </collection>
     
-    <!--
-      =begin
-      A comment block
-      =end
-    -->
-    <zone name="metadata.comment.block">
-      <starts-with>
-        <expression>\A=begin</expression>
-        <capture number="0" name="metadata.comment.block.begin"/>
-      </starts-with>
-      <ends-with>
-        <expression>\A(=end).*\Z</expression>
-        <capture number="1" name="metadata.comment.block.end"/>
-      </ends-with>
-    </zone>
+    <collection name="literal.regex">
+      <!-- /regular expression/ -->
+      <zone name="literal.regex">
+        <starts-with>
+          <expression>/</expression>
+          <capture number="0" name="delimiter.balanced.slash.begin"/>
+        </starts-with>
+        <ends-with>
+          <expression>(/)[iomxneus]*</expression>
+          <capture number="1" name="delimiter.balanced.slash.end"/>
+        </ends-with>
+        <subzones>
+          <include syntax="expression.regex"/>
+        </subzones>
+      </zone>
+    </collection>
     
-    <!-- ==================
-         = Block keywords =
-         ================== -->
+    <collection name="literal.numeric">
+      <!--
+        I want to seperately hilight all the different types of
+        literal.numerics. So, we have to provide multiple similar definitions
+        of a literal.numeric.
+      -->
+      <!-- 01756 -->
+      <zone name="literal.numeric.integer.octal">
+        <expression>\b(0)([0-7]+)\b</expression>
+        <capture number="1" name="numeric.delimiter.octal.initial-zero"/>
+        <capture number="2" name="numeric.octal.value"/>
+      </zone>
+      <!-- 0b010010110 -->
+      <zone name="literal.numeric.integer.binary">
+        <expression>\b(0(?:b|B))([01]+)\b</expression>
+        <capture number="1" name="numeric.delimiter.binary.initial-zero-b"/>
+        <capture number="2" name="numeric.binary.value"/>
+      </zone>
+      <!-- 0xDEADBEEF586 -->
+      <zone name="literal.numeric.integer.hex">
+        <expression>\b(0(?:x|X))([0-9a-fA-F]+)\b</expression>
+        <capture number="1" name="numeric.delimiter.hexadecimal.initial-zero-x"/>
+        <capture number="2" name="numeric.hexadecimal.value"/>
+      </zone>
+      <!-- 142.87e3, 0.22e8 -->
+      <zone name="literal.numeric.float.with-exponent">
+        <expression>\b(0|[1-9][0-9]*)(\.)([0-9]+)(e|E)(-?[0-9]+)\b</expression>
+        <capture number="1" name="integral.value"/>
+        <capture number="2" name="delimiter.seperator.radix-point"/>
+        <capture number="3" name="fractional.value"/>
+        <capture number="4" name="literal.numeric.exponent.delimiter"/>
+        <capture number="5" name="literal.numeric.exponent.value"/>
+      </zone>
+      <!-- 142.87, 0.22 -->
+      <zone name="literal.numeric.float">
+        <expression>\b(0|[1-9][0-9]*)(\.)([0-9]+)\b</expression>
+        <capture number="1" name="integral.value"/>
+        <capture number="2" name="delimiter.seperator.radix-point"/>
+        <capture number="3" name="fractional.value"/>
+      </zone>
+      <!-- 142e3, 0e8 -->
+      <zone name="literal.numeric.integer.decimal.with-exponent">
+        <expression>\b(0|[1-9][0-9]*)(e|E)(-?[0-9]+)\b</expression>
+        <capture number="1" name="integral.value"/>
+        <capture number="2" name="literal.numeric.exponent.delimiter"/>
+        <capture number="3" name="literal.numeric.exponent.value"/>
+      </zone>
+      <!-- 142e3, 0e8 -->
+      <zone name="literal.numeric.integer.decimal">
+        <expression>\b(0|[1-9][0-9]*)\b</expression>
+        <capture number="1" name="integral.value"/>
+      </zone>
+    </collection>
     
-    <!-- end -->
-    <zone name="keyword.control.flow.end">
-      <expression>\bend\b</expression>
-    </zone>
-		<zone name="keyword.control.flow.if">
-      <expression>\bif\b</expression>
-    </zone>
-		<zone name="keyword.control.flow.case">
-      <expression>\bcase\b</expression>
-    </zone>
-		<zone name="keyword.control.flow.then">
-      <expression>\bthen\b</expression>
-    </zone>
-		<zone name="keyword.control.flow.else">
-      <expression>\belse\b</expression>
-    </zone>
-		<zone name="keyword.control.flow.elsif">
-      <expression>\belsif\b</expression>
-    </zone>
-		<zone name="keyword.control.flow.and">
-      <expression>\band\b|&amp;|&amp;&amp;</expression>
-    </zone>
-		<zone name="keyword.control.flow.or">
-      <expression>\bor\b|\|\|</expression>
-    </zone>
+    <collection name="literal.keyword">
+      <!-- true -->
+      <zone name="literal.keyword.bool.true">
+        <expression>\btrue\b</expression>
+      </zone>
+      <!-- false -->
+      <zone name="literal.keyword.bool.false">
+        <expression>\bfalse\b</expression>
+      </zone>
+      <!-- nil -->
+      <zone name="literal.keyword.nothing.nil">
+        <expression>\bnil\b</expression>
+      </zone>
+    </collection>
     
-    <!-- =======================
-         = Standalone keywords =
-         ======================= -->
+    <!-- ===============
+         = Identifiers =
+         =============== -->
     
-    <!-- true -->
-    <zone name="literal.keyword.bool.true">
-      <expression>\btrue\b</expression>
-    </zone>
-    
-    <!-- false -->
-    <zone name="literal.keyword.bool.false">
-      <expression>\bfalse\b</expression>
-    </zone>
-    
-    <!-- nil -->
-    <zone name="literal.keyword.nothing.nil">
-      <expression>\bnil\b</expression>
-    </zone>
-
-		<!-- => -->
-		<zone name="delimiter.seperator.pairing">
-      <expression>=></expression>
-    </zone>
-
-
-		<!-- ======================
-         = Operators =
-         ====================== -->
-		<zone name="operator.comparator">
-	  	<expression>===|==|&lt;|&lt;=|&gt;|&gt;=</expression>
-	  </zone> 
-
-		<zone name="operator.accessor">
-      <expression>=|&lt;&lt;|&gt;&gt;</expression>
-    </zone>
-	
-		<zone name="operator.mathematical">
-	  	<expression>\+|\-|\*|\\|%</expression>
-	  </zone>
-
-
-    
-    <!-- ======================
-         = Syntactical blocks =
-         ====================== -->
-    
-    <!--
-      something do |foo, bar, *gaz|
-
-      end
-    -->
-    <!--
-      For now, due to the intricacies of keyword-delimited blocks versus
-      bracket-delimited blocks, as well as those of blocks with arguments
-      versus those without, we have to define several nearly identical zones
-      to describe each type.
-    -->
-    <zone name="container.block.keyword-delimited.with-arguments">
-      <starts-with>
-        <expression>(do)\s*(\|)</expression>
-        <capture number="1" name="keyword.control.flow.block.begin"/>
-        <capture number="2" name="delimiter.balanced.bar.parameters.block.begin"/>
-      </starts-with>
-      <ends-with>
-        <expression>\|</expression>
-        <capture number="0" name="delimiter.balanced.bar.parameters.block.end"/>
-      </ends-with>
-      <subzones>
-        <include collection="block-parameters"/>
-      </subzones>
-    </zone>
-    <zone name="container.block.bracket-delimited.with-arguments">
-      <starts-with>
-        <expression>(\{)\s*(\|)</expression>
-        <capture number="1" name="delimiter.balanced.curly-brace.begin"/>
-        <capture number="2" name="delimiter.balanced.bar.parameters.block.begin"/>
-      </starts-with>
-      <ends-with>
-        <expression>\|</expression>
-        <capture number="0" name="delimiter.balanced.bar.parameters.block.end"/>
-      </ends-with>
-      <subzones>
-        <include collection="block-parameters"/>
-      </subzones>
-    </zone>
-    <zone name="container.block.keyword-delimited.without-arguments">
-      <expression>do</expression>
-      <capture number="0" name="keyword.control.flow.block.begin"/>
-    </zone>
-    
-    <!--
-      def something(arg1, arg2, arg3)
-        
-      end
-    -->
-    <!--
-      For now, due to the intricacies of whitespace-delimited methods versus
-      parenthesis-delimited methods, we have to define two nearly identical
-      zones to describe each type.
-    -->
-    <zone name="container.function.parenthesis-delimited">
-      <starts-with>
-        <expression>(def)\s+([a-zA-Z_][\.A-Za-z0-9_]*[\?\!]?)\s*=?(\()</expression>
-        <capture number="1" name="keyword.definition.method.begin"/>
-        <capture number="2" name="name"/>
-        <capture number="3" name="delimiter.balanced.parenthesis.parameters.function.begin"/>
-      </starts-with>
-      <ends-with>
-        <expression>\)</expression>
-        <capture number="0" name="delimiter.balanced.parenthesis.parameters.function.end"/>
-      </ends-with>
-      <subzones>
-        <include collection="method-parameters"/>
-      </subzones>
-    </zone>
-    <zone name="container.function.whitespace-delimited">
-      <starts-with>
-        <expression>(def)\s+([a-zA-Z_][\.A-Za-z0-9_]*[\?\!]?)[ \t]*</expression>
-        <capture number="1" name="keyword.definition.method.begin"/>
-        <capture number="2" name="name"/>
-        <!-- Extending delimiter with x-parameters -->
-        <capture number="3" name="delimiter.x-parameters.function.begin"/>
-      </starts-with>
-      <ends-with>
-        <expression>\n</expression>
-        <!-- Extending delimiter with x-parameters -->
-        <capture number="0" name="delimiter.x-parameters.function.end"/>
-      </ends-with>
-      <subzones>
-        <include collection="method-parameters"/>
-      </subzones>
-    </zone>
-    
-    <!-- ==========================
-         = Syntactical constructs =
-         ========================== -->
-    
-    <include collection="variables"/>
-    
-    <zone name="literal.symbol">
-      <expression>:([A-Za-z0-9_]*[\?\!]?)</expression>
-      <capture number="1" name="symbol.name"/>
-    </zone>
-    
-    <!-- 'A single-quoted string' -->
-    <zone name="literal.string.quoted.single">
-      <starts-with>
-        <expression>'</expression>
-        <capture number="0" name="begin"/>
-      </starts-with>
-      <ends-with>
-        <expression>'</expression>
-        <capture number="0" name="end"/>
-      </ends-with>
-      <subzones>
-        <zone name="literal.escape.brief">
-          <!-- 'A single-quoted string with \'escape sequences\'' -->
-          <expression>(\\)('|\\)</expression>
-          <capture number="1" name="delimiter.seperator.escape"/>
-          <capture number="2" name="character"/>
-        </zone>
-      </subzones>
-    </zone>
-    
-    <!-- "A double-quoted string" -->
-    <zone name="literal.string.quoted.double">
-      <starts-with>
-        <expression>"</expression>
-        <capture number="0" name="begin"/>
-      </starts-with>
-      <ends-with>
-        <expression>"</expression>
-        <capture number="0" name="end"/>
-      </ends-with>
-      <subzones>
-        <!-- "A double-quoted string with\nescape \"sequences\"" -->
-        <zone name="literal.escape.extended">
-          <expression>\\.</expression>
-          <capture number="1" name="delimiter.seperator.escape"/>
-          <capture number="2" name="character"/>
-        </zone>
-        
-        <!-- "A double-quoted string with #{interpolations}" -->
-        <zone name="string.interpolation">
-          <starts-with>
-            <expression>#(\{)</expression>
-            <capture number="1" name="delimiter.balanced.curly-brace.begin"/>
-          </starts-with>
-          <ends-with>
-            <expression>\}</expression>
-            <capture number="0" name="delimiter.balanced.curly-brace.end"/>
-          </ends-with>
-          <subzones>
-            <include syntax="self"/>
-          </subzones>
-        </zone>
-      </subzones>
-    </zone>
-    
-    <!-- /regular expression/ -->
-    <zone name="literal.regex">
-      <starts-with>
-        <expression>/</expression>
-        <capture number="0" name="delimiter.balanced.slash.begin"/>
-      </starts-with>
-      <ends-with>
-        <expression>(/)[iomxneus]*</expression>
-        <capture number="1" name="delimiter.balanced.slash.end"/>
-      </ends-with>
-      <subzones>
-        <include syntax="expression.regex"/>
-      </subzones>
-    </zone>
-    
-    <!-- 42, 052, 0x2A -->
-    <!--
-      I want to seperately hilight all the different types of literal.numerics.
-      So, we have to provide multiple similar definitions of a literal.numeric.
-    -->
-    <zone name="literal.numeric.integer.octal">
-      <expression>\b(0)([0-7]+)\b</expression>
-      <capture number="1" name="numeric.delimiter.octal.initial-zero"/>
-      <capture number="2" name="numeric.octal.value"/>
-    </zone>
-    <zone name="literal.numeric.integer.binary">
-      <expression>\b(0(?:b|B))([01]+)\b</expression>
-      <capture number="1" name="numeric.delimiter.binary.initial-zero-b"/>
-      <capture number="2" name="numeric.binary.value"/>
-    </zone>
-    <zone name="literal.numeric.integer.hex">
-      <expression>\b(0(?:x|X))([0-9a-fA-F]+)\b</expression>
-      <capture number="1" name="numeric.delimiter.hexadecimal.initial-zero-x"/>
-      <capture number="2" name="numeric.hexadecimal.value"/>
-    </zone>
-    <zone name="literal.numeric.float.with-exponent">
-      <expression>\b(0|[1-9][0-9]*)(\.)([0-9]+)(e|E)(-?[0-9]+)\b</expression>
-      <capture number="1" name="integral.value"/>
-      <capture number="2" name="delimiter.seperator.radix-point"/>
-      <capture number="3" name="fractional.value"/>
-      <capture number="4" name="literal.numeric.exponent.delimiter"/>
-      <capture number="5" name="literal.numeric.exponent.value"/>
-    </zone>
-    <zone name="literal.numeric.float">
-      <expression>\b(0|[1-9][0-9]*)(\.)([0-9]+)\b</expression>
-      <capture number="1" name="integral.value"/>
-      <capture number="2" name="delimiter.seperator.radix-point"/>
-      <capture number="3" name="fractional.value"/>
-    </zone>
-    <zone name="literal.numeric.integer.decimal.with-exponent">
-      <expression>\b(0|[1-9][0-9]*)(e|E)(-?[0-9]+)\b</expression>
-      <capture number="1" name="integral.value"/>
-      <capture number="2" name="literal.numeric.exponent.delimiter"/>
-      <capture number="3" name="literal.numeric.exponent.value"/>
-    </zone>
-    <zone name="literal.numeric.integer.decimal">
-      <expression>\b(0|[1-9][0-9]*)\b</expression>
-      <capture number="1" name="integral.value"/>
-    </zone>
-    
-    <!-- ========
-         = Meta =
-         ======== -->
-    
-    <zone name="delimiter.terminator">
-      <expression>\;</expression>
-    </zone>
-    <zone name="delimiter.seperator.comma">
-      <expression>,</expression>
-    </zone>
-    <zone name="delimiter.balanced.curly-brace.begin">
-      <expression>\{</expression>
-    </zone>
-    <zone name="delimiter.balanced.curly-brace.end">
-      <expression>\}</expression>
-    </zone>
-    <zone name="delimiter.balanced.parenthesis.begin">
-      <expression>\(</expression>
-    </zone>
-    <zone name="delimiter.balanced.parenthesis.end">
-      <expression>\)</expression>
-    </zone>
-    <zone name="delimiter.balanced.square-brace.begin">
-      <expression>\[</expression>
-    </zone>
-    <zone name="delimiter.balanced.square-brace.end">
-      <expression>\]</expression>
-    </zone>
-    
-  </zones>
-  
-  <library>
-    <collection name="local-variable">
+    <collection name="identifier.variable">
+      <!-- var -->
       <zone name="identifier.variable.local">
         <expression>[a-z_][A-Za-z0-9_]*</expression>
         <capture number="0" name="variable.name"/>
       </zone>
-    </collection>
-    <collection name="variables">
-      <include collection="local-variable"/>
+      <!-- @var -->
       <zone name="identifier.variable.instance">
         <expression>@([A-Za-z0-9_]*)</expression>
         <capture number="1" name="variable.name"/>
       </zone>
-      <zone name="identifier.variable.instance">
+      <!-- @@var -->
+      <zone name="identifier.variable.instance.class">
         <expression>@@([A-Za-z0-9_]*)</expression>
         <capture number="1" name="variable.name"/>
       </zone>
+      <!-- $var, $-w, $^ -->
       <zone name="identifier.variable.global">
         <expression>\$(.|-[A-Za-z0-9_]|[A-Za-z0-9_]*)</expression>
         <capture number="1" name="variable.name"/>
       </zone>
     </collection>
-    <collection name="block-parameters">
-      <include collection="local-variable"/>
-      <zone name="identifier.variable.local.splat">
-        <expression>\*([a-z_][A-Za-z0-9_]*)</expression>
-        <capture number="2" name="variable.name"/>
+    
+    <!--
+      Currently, we treat block params the same as method params. This is
+      incorrect, mostly due to the fact that blocks can't take block arguments
+      (&proc) in Ruby 1.8. There's also other small differences. We're
+      ignoring them all for now, for the sake of simplicity.
+    -->
+    <collection name="identifier.variable.parameter">
+      <!-- var -->
+      <zone name="identifier.variable.parameter">
+        <expression>[a-z_][A-Za-z0-9_]*</expression>
+        <capture number="0" name="variable.name"/>
       </zone>
-    </collection>
-    <collection name="method-parameters">
-      <include collection="basic-variable"/>
+      <!-- *vars -->
       <zone name="identifier.variable.local.splat">
         <expression>\*([a-z_][A-Za-z0-9_]*)</expression>
         <capture number="1" name="variable.name"/>
       </zone>
+      <!-- &proc -->
       <zone name="identifier.variable.local.block">
         <expression>&amp;([a-z_][A-Za-z0-9_]*)</expression>
         <capture number="1" name="variable.name"/>
       </zone>
     </collection>
+    
+    <!-- ===========
+         = Keyword =
+         =========== -->
+    
+    <collection name="keyword.control">
+      <zone name="keyword.control.flow.end">
+        <expression>\bend\b</expression>
+      </zone>
+      <zone name="keyword.control.flow.if">
+        <expression>\bif\b</expression>
+      </zone>
+      <zone name="keyword.control.flow.case">
+        <expression>\bcase\b</expression>
+      </zone>
+      <zone name="keyword.control.flow.then">
+        <expression>\bthen\b</expression>
+      </zone>
+      <zone name="keyword.control.flow.else">
+        <expression>\belse\b</expression>
+      </zone>
+      <zone name="keyword.control.flow.elsif">
+        <expression>\belsif\b</expression>
+      </zone>
+      <zone name="keyword.control.flow.and">
+        <expression>\band\b|&amp;|&amp;&amp;</expression>
+      </zone>
+      <zone name="keyword.control.flow.or">
+        <expression>\bor\b|\|\|</expression>
+      </zone>
+    </collection>
+    
+    <!-- ==============
+         = Containers =
+         ============== -->
+    
+    <collection name="container.function">
+      <!--
+        For now, due to the intricacies of whitespace-delimited methods versus
+        parenthesis-delimited methods, we have to define two nearly identical
+        zones to describe each type.
+      -->
+      <zone name="container.function.parenthesis-delimited">
+        <starts-with>
+          <expression>(def)\s+([a-zA-Z_][\.A-Za-z0-9_]*[\?\!]?)\s*=?(\()</expression>
+          <capture number="1" name="keyword.definition.method.begin"/>
+          <capture number="2" name="name"/>
+          <capture number="3" name="delimiter.balanced.parenthesis.parameters.function.begin"/>
+        </starts-with>
+        <ends-with>
+          <expression>\)</expression>
+          <capture number="0" name="delimiter.balanced.parenthesis.parameters.function.end"/>
+        </ends-with>
+        <subzones>
+          <include collection="identifier.variable.parameter"/>
+        </subzones>
+      </zone>
+      <zone name="container.function.whitespace-delimited">
+        <starts-with>
+          <expression>(def)\s+([a-zA-Z_][\.A-Za-z0-9_]*[\?\!]?)[ \t]*</expression>
+          <capture number="1" name="keyword.definition.method.begin"/>
+          <capture number="2" name="name"/>
+          <!-- Extending delimiter with x-parameters -->
+          <capture number="3" name="delimiter.x-parameters.function.begin"/>
+        </starts-with>
+        <ends-with>
+          <expression>\n</expression>
+          <!-- Extending delimiter with x-parameters -->
+          <capture number="0" name="delimiter.x-parameters.function.end"/>
+        </ends-with>
+        <subzones>
+          <include collection="identifier.variable.parameter"/>
+        </subzones>
+      </zone>
+    </collection>
+    
+    <collection name="container.block">
+      <!--
+        For now, due to the intricacies of keyword-delimited blocks versus
+        bracket-delimited blocks, as well as those of blocks with arguments
+        versus those without, we have to define several nearly identical zones
+        to describe each type.
+      -->
+      <zone name="container.block.keyword-delimited.with-arguments">
+        <starts-with>
+          <expression>(do)\s*(\|)</expression>
+          <capture number="1" name="keyword.control.flow.block.begin"/>
+          <capture number="2" name="delimiter.balanced.bar.parameters.block.begin"/>
+        </starts-with>
+        <ends-with>
+          <expression>\|</expression>
+          <capture number="0" name="delimiter.balanced.bar.parameters.block.end"/>
+        </ends-with>
+        <subzones>
+          <include collection="identifier.variable.parameter"/>
+        </subzones>
+      </zone>
+      <zone name="container.block.bracket-delimited.with-arguments">
+        <starts-with>
+          <expression>(\{)\s*(\|)</expression>
+          <capture number="1" name="delimiter.balanced.curly-brace.begin"/>
+          <capture number="2" name="delimiter.balanced.bar.parameters.block.begin"/>
+        </starts-with>
+        <ends-with>
+          <expression>\|</expression>
+          <capture number="0" name="delimiter.balanced.bar.parameters.block.end"/>
+        </ends-with>
+        <subzones>
+          <include collection="identifier.variable.parameter"/>
+        </subzones>
+      </zone>
+      <zone name="container.block.keyword-delimited.without-arguments">
+        <expression>do</expression>
+        <capture number="0" name="keyword.control.flow.block.begin"/>
+      </zone>
+    </collection>
+    
+    <!-- ============
+         = Metadata =
+         ============ -->
+    
+    <collection name="metadata.comment">
+      <!-- # A comment -->
+      <zone name="metadata.comment.line">
+        <expression>(#).*$\n?</expression>
+        <capture number="1" name="metadata.comment.line.hash"/>
+      </zone>
+      <!--
+        =begin
+        A comment block
+        =end
+      -->
+      <zone name="metadata.comment.block">
+        <starts-with>
+          <expression>\A=begin</expression>
+          <capture number="0" name="metadata.comment.block.begin"/>
+        </starts-with>
+        <ends-with>
+          <expression>\A(=end).*\Z</expression>
+          <capture number="1" name="metadata.comment.block.end"/>
+        </ends-with>
+      </zone>
+    </collection>
+    
+    <!-- =============
+         = Operators =
+         ============= -->
+    
+    <collection name="operator">
+      <zone name="operator.comparator">
+        <expression>===|==|&lt;|&lt;=|&gt;|&gt;=</expression>
+      </zone>
+      <zone name="operator.accessor">
+        <expression>=|&lt;&lt;|&gt;&gt;</expression>
+      </zone>
+      <zone name="operator.mathematical">
+        <expression>\+|\-|\*|\\|%</expression>
+      </zone>
+    </collection>
+    
+    <!-- ==============
+         = Delimiters =
+         ============== -->
+    
+    <collection name="delimiter">
+      <zone name="delimiter.terminator">
+        <expression>\;</expression>
+      </zone>
+      <zone name="delimiter.seperator.comma">
+        <expression>,</expression>
+      </zone>
+      <zone name="delimiter.balanced.curly-brace.begin">
+        <expression>\{</expression>
+      </zone>
+      <zone name="delimiter.balanced.curly-brace.end">
+        <expression>\}</expression>
+      </zone>
+      <zone name="delimiter.balanced.parenthesis.begin">
+        <expression>\(</expression>
+      </zone>
+      <zone name="delimiter.balanced.parenthesis.end">
+        <expression>\)</expression>
+      </zone>
+      <zone name="delimiter.balanced.square-brace.begin">
+        <expression>\[</expression>
+      </zone>
+      <zone name="delimiter.balanced.square-brace.end">
+        <expression>\]</expression>
+      </zone>
+    </collection>
+    
   </library>
 </syntax>

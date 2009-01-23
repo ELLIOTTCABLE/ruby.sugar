@@ -17,6 +17,7 @@
     <include collection="operator"/>
     <include collection="container.block"/>
     <include collection="container.function"/>
+    <include collection="identifier.variable"/>
     <include collection="literal.string"/>
     <include collection="literal.regex"/>
     <include collection="literal.numeric"/>

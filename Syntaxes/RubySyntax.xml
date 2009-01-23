@@ -348,8 +348,17 @@
     <collection name="metadata.comment">
       <!-- # A comment -->
       <zone name="metadata.comment.line">
-        <expression>(#).*$\n?</expression>
-        <capture number="1" name="metadata.comment.line.hash"/>
+        <starts-with>
+          <expression>#</expression>
+          <capture number="0" name="metadata.comment.line.hash"/>
+        </starts-with>
+        <ends-with>
+          <!-- Just having \Z causes weirdness -->
+          <expression>\n\Z</expression>
+        </ends-with>
+        <subzones>
+          <include collection="metadata.processing.comment.code"/>
+        </subzones>
       </zone>
       <!--
         =begin
@@ -365,6 +374,24 @@
           <expression>\A(=end).*\Z</expression>
           <capture number="1" name="metadata.comment.block.end"/>
         </ends-with>
+        <subzones>
+          <include collection="metadata.processing.comment.code"/>
+        </subzones>
+      </zone>
+    </collection>
+    <collection name="metadata.processing.comment.code">
+      <zone name="metadata.processing.comment.code">
+        <starts-with>
+          <expression>`</expression>
+          <capture number="0" name="delimiter.quote.balanced.backtick.begin"/>
+        </starts-with>
+        <ends-with>
+          <expression>`</expression>
+          <capture number="0" name="delimiter.quote.balanced.backtick.end"/>
+        </ends-with>
+        <subzones>
+          <include syntax="sourcecode.ruby"/>
+        </subzones>
       </zone>
     </collection>
     

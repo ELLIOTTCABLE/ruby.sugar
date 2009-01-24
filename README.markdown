@@ -59,7 +59,10 @@ TODO
   - Arrays (Might be hard, the syntax is so very simple)
   - Hashes
   - Special method names that aren't simple symbols
-  - And the hard one: percent-delimited strings. No idea how to do this one.
+  - And the hard one: percent-delimited literals. No idea how to do this one.
+  - More advanced heredoc support
+    - Nesting, see Thomas' heredoc stuff in the Experimental Ruby tmbundle
+    - Support embedded languages, especially via injection
 - CodeSense
   - Everything!
 - Actions

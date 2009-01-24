@@ -12,6 +12,7 @@
   -->
   <zones>
     <include collection="metadata.comment"/>
+    <include collection="literal.string.heredoc"/>
     <include collection="keyword.control"/>
     <include collection="literal.keyword"/>
     <include collection="operator"/>
@@ -85,6 +86,50 @@
       <zone name="literal.symbol">
         <expression>:([A-Za-z0-9_]*[\?\!]?)</expression>
         <capture number="1" name="symbol.name"/>
+      </zone>
+    </collection>
+    
+    <collection name="literal.string.heredoc">
+      <!--
+        Okay, so. This is extremely messy. Different zones for every possible
+        situation, not very flexible. I just don't know a better way to do it.
+      -->
+      <zone name="literal.string.heredoc.no-quotes">
+        <starts-with>
+          <expression>(&lt;&lt;-?)(\w+)</expression>
+          <capture number="1" name="operator.accessor.heredoc.begin"/>
+          <capture number="2" name="heredoc.name"/>
+        </starts-with>
+        <ends-with>
+          <expression>\2</expression>
+          <capture number="0" name="heredoc.name"/>
+        </ends-with>
+      </zone>
+      <zone name="literal.string.heredoc.quoted.single">
+        <starts-with>
+          <expression>(&lt;&lt;-?)(')(.*?)(')</expression>
+          <capture number="1" name="operator.accessor.heredoc.begin"/>
+          <capture number="2" name="delimiter.quote.balanced.single.begin"/>
+          <capture number="3" name="heredoc.name"/>
+          <capture number="4" name="delimiter.quote.balanced.single.end"/>
+        </starts-with>
+        <ends-with>
+          <expression>\3</expression>
+          <capture number="0" name="heredoc.name"/>
+        </ends-with>
+      </zone>
+      <zone name="literal.string.heredoc.quoted.double">
+        <starts-with>
+          <expression>(&lt;&lt;-?)(")(.*?)(")</expression>
+          <capture number="1" name="operator.accessor.heredoc.begin"/>
+          <capture number="2" name="delimiter.quote.balanced.double.begin"/>
+          <capture number="3" name="heredoc.name"/>
+          <capture number="4" name="delimiter.quote.balanced.double.end"/>
+        </starts-with>
+        <ends-with>
+          <expression>\3</expression>
+          <capture number="0" name="heredoc.name"/>
+        </ends-with>
       </zone>
     </collection>
     

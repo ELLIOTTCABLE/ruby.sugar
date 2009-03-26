@@ -451,7 +451,7 @@
         <expression>=|&lt;&lt;|&gt;&gt;</expression>
       </zone>
       <zone name="operator.mathematical">
-        <expression>\+|\-|\*|\\|%</expression>
+        <expression>\+|-|\*|/|%</expression>
       </zone>
       <zone name="operator.logical.and">
         <expression>\band\b|&amp;&amp;</expression>

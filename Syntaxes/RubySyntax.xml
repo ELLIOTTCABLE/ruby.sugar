@@ -11,6 +11,7 @@
     matching rules).
   -->
   <zones>
+    <include collection="delimiter"/>
     <include collection="metadata.comment"/>
     <include collection="literal.string.heredoc"/>
     <include collection="keyword.control"/>
@@ -22,7 +23,6 @@
     <include collection="literal.string"/>
     <include collection="literal.regex"/>
     <include collection="literal.numeric"/>
-    <include collection="delimiter"/>
   </zones>
   <library>
     
@@ -495,6 +495,9 @@
       </zone>
       <zone name="delimiter.seperator.comma">
         <expression>,</expression>
+      </zone>
+      <zone name="delimiter.seperator.namespace">
+        <expression>::</expression>
       </zone>
       <zone name="delimiter.balanced.curly-brace.begin">
         <expression>\{</expression>

@@ -48,7 +48,6 @@ TODO
     pulling in the variable collection (for the most part).
   - Method calls, including arguments and blocks.
   - Class/module definitions
-  - Nested constants
   - Operators
   - Fix the regular expression interpolation SyntaxInjection such that
     interpolations work inside other regex structures, such as groups

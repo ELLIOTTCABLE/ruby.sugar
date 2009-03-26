@@ -224,6 +224,11 @@
          =============== -->
     
     <collection name="identifier.variable">
+      <!-- Constant -->
+      <zone name="identifier.variable.constant">
+        <expression>[A-Z][A-Za-z0-9_]*</expression>
+        <capture number="0" name="constant.name"/>
+      </zone>
       <!-- var -->
       <zone name="identifier.variable.local">
         <expression>[a-z_][A-Za-z0-9_]*</expression>

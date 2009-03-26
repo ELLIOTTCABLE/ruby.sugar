@@ -63,6 +63,9 @@ TODO
   - More advanced heredoc support
     - Nesting, see Thomas' heredoc stuff in the Experimental Ruby tmbundle
     - Support embedded languages, especially via injection
+  - Fix it so that slash-operators (division operators) are properly
+    regcognized as different from regexen, where appropriate (see how `ruby`
+    handles it here: http://gist.github.com/86009)
 - CodeSense
   - Everything!
 - Actions

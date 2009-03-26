@@ -48,13 +48,12 @@ TODO
     pulling in the variable collection (for the most part).
   - Method calls, including arguments and blocks.
   - Class/module definitions
-  - Constants (including nesting)
+  - Nested constants
   - Operators
   - Fix the regular expression interpolation SyntaxInjection such that
     interpolations work inside other regex structures, such as groups
   - Octal/Hex, and Control/Meta string escapes.
   - Heredocs
-  - Symbols
   - Ranges
   - Arrays (Might be hard, the syntax is so very simple)
   - Hashes

@@ -283,11 +283,32 @@
       <zone name="keyword.control.flow.end">
         <expression>\bend\b</expression>
       </zone>
+      <zone name="keyword.control.flow.while">
+        <expression>\bwhile\b</expression>
+      </zone>
+      <zone name="keyword.control.flow.until">
+        <expression>\buntil\b</expression>
+      </zone>
+      <zone name="keyword.control.flow.rescue">
+        <expression>\brescue\b</expression>
+      </zone>
+      <zone name="keyword.control.flow.ensure">
+        <expression>\bensure\b</expression>
+      </zone>
+      <zone name="keyword.control.flow.for">
+        <expression>\bfor\b</expression>
+      </zone>
       <zone name="keyword.control.flow.if">
         <expression>\bif\b</expression>
       </zone>
+      <zone name="keyword.control.flow.unless">
+        <expression>\bunless\b</expression>
+      </zone>
       <zone name="keyword.control.flow.case">
         <expression>\bcase\b</expression>
+      </zone>
+      <zone name="keyword.control.flow.when">
+        <expression>\bwhen\b</expression>
       </zone>
       <zone name="keyword.control.flow.then">
         <expression>\bthen\b</expression>
@@ -458,6 +479,9 @@
       </zone>
       <zone name="operator.logical.or">
         <expression>\bor\b|\|\|</expression>
+      </zone>
+      <zone name="operator.logical.not">
+        <expression>\bnot\b|!</expression>
       </zone>
     </collection>
     

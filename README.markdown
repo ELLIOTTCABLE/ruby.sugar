@@ -54,6 +54,7 @@ TODO
   - Octal/Hex, and Control/Meta string escapes.
   - Heredocs
   - Ranges
+  - String-ish Symbol syntax (:'foo bar', :"gaz #{123}")
   - Arrays (Might be hard, the syntax is so very simple)
   - Hashes
   - Special method names that aren't simple symbols

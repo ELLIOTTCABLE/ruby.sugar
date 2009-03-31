@@ -55,7 +55,8 @@ TODO
   - Heredocs
   - Ranges
   - String-ish Symbol syntax (:'foo bar', :"gaz #{123}")
-  - Arrays (Might be hard, the syntax is so very simple)
+  - Arrays, including percent-delimited syntax (Might be hard, the syntax is
+    so very simple)
   - Hashes
   - Special method names that aren't simple symbols
   - And the hard one: percent-delimited literals. No idea how to do this one.

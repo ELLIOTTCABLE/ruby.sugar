@@ -16,13 +16,13 @@
     <include collection="literal.string.heredoc"/>
     <include collection="keyword.control"/>
     <include collection="literal.keyword"/>
-    <include collection="operator"/>
     <include collection="container.block"/>
     <include collection="container.function"/>
     <include collection="identifier.variable"/>
     <include collection="literal.string"/>
     <include collection="literal.regex"/>
     <include collection="literal.numeric"/>
+    <include collection="operator"/>
   </zones>
   <library>
     
@@ -42,12 +42,7 @@
           <capture number="0" name="end"/>
         </ends-with>
         <subzones>
-          <zone name="literal.escape.brief">
-            <!-- 'A single-quoted string with \'escape sequences\'' -->
-            <expression>(\\)('|\\)</expression>
-            <capture number="1" name="delimiter.seperator.escape"/>
-            <capture number="2" name="character"/>
-          </zone>
+          <include collection="subzones.literal.non-interpolated"/>
         </subzones>
       </zone>
       <!-- "A double-quoted string" -->
@@ -61,31 +56,280 @@
           <capture number="0" name="end"/>
         </ends-with>
         <subzones>
-          <!-- "A double-quoted string with\nescape \"sequences\"" -->
-          <zone name="literal.escape.extended">
-            <expression>\\.</expression>
-            <capture number="1" name="delimiter.seperator.escape"/>
-            <capture number="2" name="character"/>
-          </zone>
-          <!-- "A double-quoted string with #{interpolations}" -->
-          <zone name="string.interpolation">
-            <starts-with>
-              <expression>#(\{)</expression>
-              <capture number="1" name="delimiter.balanced.curly-brace.begin"/>
-            </starts-with>
-            <ends-with>
-              <expression>\}</expression>
-              <capture number="0" name="delimiter.balanced.curly-brace.end"/>
-            </ends-with>
-            <subzones>
-              <include syntax="sourcecode.ruby"/>
-            </subzones>
-          </zone>
+          <include collection="subzones.literal.interpolated"/>
         </subzones>
       </zone>
+      
+      <!--
+        Again here, I can't really do this the "right way" without variable-
+        width look-behinds (to look behind and see if the starts-with
+        expression used the appropriate starting character). Thus, I'm going
+        to have to separately define each type of paired delimiter, and then
+        one more for the wildcard pairs.
+      -->
+      
+      <!-- %(A percent-delimited string) -->
+      <zone name="literal.string.percent-delimited.interpolated.parenthesis">
+        <starts-with>
+          <expression>(%)(Q)?(\()</expression>
+          <capture number="1" name="delimiter.literal.percent-delimiter"/>
+          <capture number="2" name="delimiter.literal.percent-delimited.qualifier"/>
+          <capture number="3" name="delimiter.balanced.percent-delimited.begin"/>
+        </starts-with>
+        <ends-with>
+          <expression>(\))</expression>
+          <capture number="1" name="delimiter.balanced.percent-delimited.begin"/>
+        </ends-with>
+        <subzones>
+          <include collection="subzones.literal.interpolated"/>
+        </subzones>
+      </zone>
+      <zone name="literal.string.percent-delimited.interpolated.square-brace">
+        <starts-with>
+          <expression>(%)(Q)?(\[)</expression>
+          <capture number="1" name="delimiter.literal.percent-delimiter"/>
+          <capture number="2" name="delimiter.literal.percent-delimited.qualifier"/>
+          <capture number="3" name="delimiter.balanced.percent-delimited.begin"/>
+        </starts-with>
+        <ends-with>
+          <expression>(\])</expression>
+          <capture number="1" name="delimiter.balanced.percent-delimited.begin"/>
+        </ends-with>
+        <subzones>
+          <include collection="subzones.literal.interpolated"/>
+        </subzones>
+      </zone>
+      <zone name="literal.string.percent-delimited.interpolated.curly-brace">
+        <starts-with>
+          <expression>(%)(Q)?(\{)</expression>
+          <capture number="1" name="delimiter.literal.percent-delimiter"/>
+          <capture number="2" name="delimiter.literal.percent-delimited.qualifier"/>
+          <capture number="3" name="delimiter.balanced.percent-delimited.begin"/>
+        </starts-with>
+        <ends-with>
+          <expression>(\})</expression>
+          <capture number="1" name="delimiter.balanced.percent-delimited.begin"/>
+        </ends-with>
+        <subzones>
+          <include collection="subzones.literal.interpolated"/>
+        </subzones>
+      </zone>
+      <zone name="literal.string.percent-delimited.interpolated.angle-brace">
+        <starts-with>
+          <expression>(%)(Q)?(\&lt;)</expression>
+          <capture number="1" name="delimiter.literal.percent-delimiter"/>
+          <capture number="2" name="delimiter.literal.percent-delimited.qualifier"/>
+          <capture number="3" name="delimiter.balanced.percent-delimited.begin"/>
+        </starts-with>
+        <ends-with>
+          <expression>(\&gt;)</expression>
+          <capture number="1" name="delimiter.balanced.percent-delimited.begin"/>
+        </ends-with>
+        <subzones>
+          <include collection="subzones.literal.interpolated"/>
+        </subzones>
+      </zone>
+      <zone name="literal.string.percent-delimited.interpolated">
+        <starts-with>
+          <expression>(%)(Q)?([`~!@#$%^&amp;*-_=+\|'";:.,/?])</expression>
+          <capture number="1" name="delimiter.literal.percent-delimiter"/>
+          <capture number="2" name="delimiter.literal.percent-delimited.qualifier"/>
+          <capture number="3" name="delimiter.balanced.percent-delimited.begin"/>
+        </starts-with>
+        <ends-with>
+          <expression>(\3)</expression>
+          <capture number="1" name="delimiter.balanced.percent-delimited.begin"/>
+        </ends-with>
+        <subzones>
+          <include collection="subzones.literal.interpolated"/>
+        </subzones>
+      </zone>
+      <zone name="literal.string.percent-delimited.non-interpolated.parenthesis">
+        <starts-with>
+          <expression>(%)(q)(\()</expression>
+          <capture number="1" name="delimiter.literal.percent-delimiter"/>
+          <capture number="2" name="delimiter.literal.percent-delimited.qualifier"/>
+          <capture number="3" name="delimiter.balanced.percent-delimited.begin"/>
+        </starts-with>
+        <ends-with>
+          <expression>(\))</expression>
+          <capture number="1" name="delimiter.balanced.percent-delimited.begin"/>
+        </ends-with>
+        <subzones>
+          <include collection="subzones.literal.non-interpolated"/>
+        </subzones>
+      </zone>
+      <zone name="literal.string.percent-delimited.non-interpolated.square-brace">
+        <starts-with>
+          <expression>(%)(q)(\[)</expression>
+          <capture number="1" name="delimiter.literal.percent-delimiter"/>
+          <capture number="2" name="delimiter.literal.percent-delimited.qualifier"/>
+          <capture number="3" name="delimiter.balanced.percent-delimited.begin"/>
+        </starts-with>
+        <ends-with>
+          <expression>(\])</expression>
+          <capture number="1" name="delimiter.balanced.percent-delimited.begin"/>
+        </ends-with>
+        <subzones>
+          <include collection="subzones.literal.non-interpolated"/>
+        </subzones>
+      </zone>
+      <zone name="literal.string.percent-delimited.non-interpolated.curly-brace">
+        <starts-with>
+          <expression>(%)(q)(\{)</expression>
+          <capture number="1" name="delimiter.literal.percent-delimiter"/>
+          <capture number="2" name="delimiter.literal.percent-delimited.qualifier"/>
+          <capture number="3" name="delimiter.balanced.percent-delimited.begin"/>
+        </starts-with>
+        <ends-with>
+          <expression>(\})</expression>
+          <capture number="1" name="delimiter.balanced.percent-delimited.begin"/>
+        </ends-with>
+        <subzones>
+          <include collection="subzones.literal.non-interpolated"/>
+        </subzones>
+      </zone>
+      <zone name="literal.string.percent-delimited.non-interpolated.angle-brace">
+        <starts-with>
+          <expression>(%)(q)(\&lt;)</expression>
+          <capture number="1" name="delimiter.literal.percent-delimiter"/>
+          <capture number="2" name="delimiter.literal.percent-delimited.qualifier"/>
+          <capture number="3" name="delimiter.balanced.percent-delimited.begin"/>
+        </starts-with>
+        <ends-with>
+          <expression>(\&gt;)</expression>
+          <capture number="1" name="delimiter.balanced.percent-delimited.begin"/>
+        </ends-with>
+        <subzones>
+          <include collection="subzones.literal.non-interpolated"/>
+        </subzones>
+      </zone>
+      <zone name="literal.string.percent-delimited.non-interpolated">
+        <starts-with>
+          <expression>(%)(q)?([`~!@#$%^&amp;*-_=+\|'";:.,/?])</expression>
+          <capture number="1" name="delimiter.literal.percent-delimiter"/>
+          <capture number="2" name="delimiter.literal.percent-delimited.qualifier"/>
+          <capture number="3" name="delimiter.balanced.percent-delimited.begin"/>
+        </starts-with>
+        <ends-with>
+          <expression>(\3)</expression>
+          <capture number="1" name="delimiter.balanced.percent-delimited.begin"/>
+        </ends-with>
+        <subzones>
+          <include collection="subzones.literal.non-interpolated"/>
+        </subzones>
+      </zone>
+      
       <zone name="literal.symbol">
         <expression>:([A-Za-z0-9_]*[\?\!]?)</expression>
         <capture number="1" name="symbol.name"/>
+      </zone>
+      <!-- %s(percent_delimited_symbol) -->
+      <zone name="literal.symbol.percent-delimited.non-interpolated.parenthesis">
+        <starts-with>
+          <expression>(%)(s)(\()</expression>
+          <capture number="1" name="delimiter.literal.percent-delimiter"/>
+          <capture number="2" name="delimiter.literal.percent-delimited.qualifier"/>
+          <capture number="3" name="delimiter.balanced.percent-delimited.begin"/>
+        </starts-with>
+        <ends-with>
+          <expression>(\))</expression>
+          <capture number="1" name="delimiter.balanced.percent-delimited.begin"/>
+        </ends-with>
+        <subzones>
+          <include collection="subzones.literal.symbol.non-interpolated"/>
+        </subzones>
+      </zone>
+      <zone name="literal.symbol.percent-delimited.non-interpolated.square-brace">
+        <starts-with>
+          <expression>(%)(s)(\[)</expression>
+          <capture number="1" name="delimiter.literal.percent-delimiter"/>
+          <capture number="2" name="delimiter.literal.percent-delimited.qualifier"/>
+          <capture number="3" name="delimiter.balanced.percent-delimited.begin"/>
+        </starts-with>
+        <ends-with>
+          <expression>(\])</expression>
+          <capture number="1" name="delimiter.balanced.percent-delimited.begin"/>
+        </ends-with>
+        <subzones>
+          <include collection="subzones.literal.symbol.non-interpolated"/>
+        </subzones>
+      </zone>
+      <zone name="literal.symbol.percent-delimited.non-interpolated.curly-brace">
+        <starts-with>
+          <expression>(%)(s)(\{)</expression>
+          <capture number="1" name="delimiter.literal.percent-delimiter"/>
+          <capture number="2" name="delimiter.literal.percent-delimited.qualifier"/>
+          <capture number="3" name="delimiter.balanced.percent-delimited.begin"/>
+        </starts-with>
+        <ends-with>
+          <expression>(\})</expression>
+          <capture number="1" name="delimiter.balanced.percent-delimited.begin"/>
+        </ends-with>
+        <subzones>
+          <include collection="subzones.literal.symbol.non-interpolated"/>
+        </subzones>
+      </zone>
+      <zone name="literal.symbol.percent-delimited.non-interpolated.angle-brace">
+        <starts-with>
+          <expression>(%)(s)(\&lt;)</expression>
+          <capture number="1" name="delimiter.literal.percent-delimiter"/>
+          <capture number="2" name="delimiter.literal.percent-delimited.qualifier"/>
+          <capture number="3" name="delimiter.balanced.percent-delimited.begin"/>
+        </starts-with>
+        <ends-with>
+          <expression>(\&gt;)</expression>
+          <capture number="1" name="delimiter.balanced.percent-delimited.begin"/>
+        </ends-with>
+        <subzones>
+          <include collection="subzones.literal.symbol.non-interpolated"/>
+        </subzones>
+      </zone>
+      <zone name="literal.symbol.percent-delimited.non-interpolated">
+        <starts-with>
+          <expression>(%)(s)?([`~!@#$%^&amp;*-_=+\|'";:.,/?])</expression>
+          <capture number="1" name="delimiter.literal.percent-delimiter"/>
+          <capture number="2" name="delimiter.literal.percent-delimited.qualifier"/>
+          <capture number="3" name="delimiter.balanced.percent-delimited.begin"/>
+        </starts-with>
+        <ends-with>
+          <expression>(\3)</expression>
+          <capture number="1" name="delimiter.balanced.percent-delimited.begin"/>
+        </ends-with>
+        <subzones>
+          <include collection="subzones.literal.non-interpolated"/>
+        </subzones>
+      </zone>
+    </collection>
+    
+    <collection name="subzones.literal.interpolated">
+      <!-- "A double-quoted string with\nescape \"sequences\"" -->
+      <zone name="literal.escape.extended">
+        <expression>\\.</expression>
+        <capture number="1" name="delimiter.seperator.escape"/>
+        <capture number="2" name="character"/>
+      </zone>
+      <!-- "A double-quoted string with #{interpolations}" -->
+      <zone name="string.interpolation">
+        <starts-with>
+          <expression>#(\{)</expression>
+          <capture number="1" name="delimiter.balanced.curly-brace.begin"/>
+        </starts-with>
+        <ends-with>
+          <expression>\}</expression>
+          <capture number="0" name="delimiter.balanced.curly-brace.end"/>
+        </ends-with>
+        <subzones>
+          <include syntax="sourcecode.ruby"/>
+        </subzones>
+      </zone>
+    </collection>
+    <collection name="subzones.literal.non-interpolated">
+      <zone name="literal.escape.brief">
+        <!-- 'A single-quoted string with \'escape sequences\'' -->
+        <expression>(\\)('|\\)</expression>
+        <capture number="1" name="delimiter.seperator.escape"/>
+        <capture number="2" name="character"/>
       </zone>
     </collection>
     
@@ -130,6 +374,81 @@
         <ends-with>
           <expression>(/)[iomxneus]*</expression>
           <capture number="1" name="delimiter.balanced.slash.end"/>
+        </ends-with>
+        <subzones>
+          <include syntax="expression.regex"/>
+        </subzones>
+      </zone>
+      <zone name="literal.regex.percent-delimited.interpolated.parenthesis">
+        <starts-with>
+          <expression>(%)(r)(\()</expression>
+          <capture number="1" name="delimiter.literal.percent-delimiter"/>
+          <capture number="2" name="delimiter.literal.percent-delimited.qualifier"/>
+          <capture number="3" name="delimiter.balanced.percent-delimited.begin"/>
+        </starts-with>
+        <ends-with>
+          <expression>(\))</expression>
+          <capture number="1" name="delimiter.balanced.percent-delimited.begin"/>
+        </ends-with>
+        <subzones>
+          <include syntax="expression.regex"/>
+        </subzones>
+      </zone>
+      <zone name="literal.regex.percent-delimited.interpolated.square-brace">
+        <starts-with>
+          <expression>(%)(r)(\[)</expression>
+          <capture number="1" name="delimiter.literal.percent-delimiter"/>
+          <capture number="2" name="delimiter.literal.percent-delimited.qualifier"/>
+          <capture number="3" name="delimiter.balanced.percent-delimited.begin"/>
+        </starts-with>
+        <ends-with>
+          <expression>(\])</expression>
+          <capture number="1" name="delimiter.balanced.percent-delimited.begin"/>
+        </ends-with>
+        <subzones>
+          <include syntax="expression.regex"/>
+        </subzones>
+      </zone>
+      <zone name="literal.regex.percent-delimited.interpolated.curly-brace">
+        <starts-with>
+          <expression>(%)(r)(\{)</expression>
+          <capture number="1" name="delimiter.literal.percent-delimiter"/>
+          <capture number="2" name="delimiter.literal.percent-delimited.qualifier"/>
+          <capture number="3" name="delimiter.balanced.percent-delimited.begin"/>
+        </starts-with>
+        <ends-with>
+          <expression>(\})</expression>
+          <capture number="1" name="delimiter.balanced.percent-delimited.begin"/>
+        </ends-with>
+        <subzones>
+          <include syntax="expression.regex"/>
+        </subzones>
+      </zone>
+      <zone name="literal.regex.percent-delimited.interpolated.angle-brace">
+        <starts-with>
+          <expression>(%)(r)(\&lt;)</expression>
+          <capture number="1" name="delimiter.literal.percent-delimiter"/>
+          <capture number="2" name="delimiter.literal.percent-delimited.qualifier"/>
+          <capture number="3" name="delimiter.balanced.percent-delimited.begin"/>
+        </starts-with>
+        <ends-with>
+          <expression>(\&gt;)</expression>
+          <capture number="1" name="delimiter.balanced.percent-delimited.begin"/>
+        </ends-with>
+        <subzones>
+          <include syntax="expression.regex"/>
+        </subzones>
+      </zone>
+      <zone name="literal.regex.percent-delimited.interpolated">
+        <starts-with>
+          <expression>(%)(r)([`~!@#$%^&amp;*-_=+\|'";:.,/?])</expression>
+          <capture number="1" name="delimiter.literal.percent-delimiter"/>
+          <capture number="2" name="delimiter.literal.percent-delimited.qualifier"/>
+          <capture number="3" name="delimiter.balanced.percent-delimited.begin"/>
+        </starts-with>
+        <ends-with>
+          <expression>(\3)</expression>
+          <capture number="1" name="delimiter.balanced.percent-delimited.begin"/>
         </ends-with>
         <subzones>
           <include syntax="expression.regex"/>

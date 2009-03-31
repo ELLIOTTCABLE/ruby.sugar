@@ -59,6 +59,7 @@ TODO
   - Hashes
   - Special method names that aren't simple symbols
   - And the hard one: percent-delimited literals. No idea how to do this one.
+  - `echoed shelling out`, as well as %x(the percent delimited variant)
   - More advanced heredoc support
     - Nesting, see Thomas' heredoc stuff in the Experimental Ruby tmbundle
     - Support embedded languages, especially via injection

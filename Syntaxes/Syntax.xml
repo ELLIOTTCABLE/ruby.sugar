@@ -21,10 +21,14 @@
           <capture number="2" name="container.expression.terminator"/>
         </ends-with>
         <subzones>
-          <include collection="container.expressions.other"/>
+          <include collection="container.expressions.subzones"/>
         </subzones>
       </zone>
     </collection>
+    <collection name="container.expressions.subzones">
+      <include collection="container.expressions.other"/>
+    </collection>
+    
     <collection name="container.expressions.other">
       
     </collection>

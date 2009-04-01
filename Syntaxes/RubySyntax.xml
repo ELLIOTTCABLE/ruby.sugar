@@ -13,6 +13,7 @@
   <zones>
     <include collection="delimiter"/>
     <include collection="container.expression.parenthetical"/>
+    <include collection="metadata.comment.header"/>
     <include collection="metadata.comment"/>
     <include collection="literal.string.heredoc"/>
     <include collection="keyword.control"/>
@@ -733,6 +734,21 @@
          = Metadata =
          ============ -->
     
+    <collection name="metadata.comment.header">
+      <!-- # A comment\n# that takes\n# multiple lines -->
+      <zone name="metadata.comment.header">
+        <starts-with>
+          <expression>\A[ \t]*##</expression>
+          <capture number="0" name="metadata.comment.header.hash"/>
+        </starts-with>
+        <ends-with>
+          <expression>\A(?![ \t]*#)</expression>
+        </ends-with>
+        <subzones>
+          <include collection="metadata.processing.comment.code"/>
+        </subzones>
+      </zone>
+    </collection>
     <collection name="metadata.comment">
       <!-- # A comment -->
       <zone name="metadata.comment.line">

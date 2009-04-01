@@ -18,7 +18,7 @@
         <ends-with>
           <expression>(?:(\n$)|(;))</expression>
           <capture number="0" name="container.expression.end"/>
-          <capture number="1" name="container.expression.terminator"/>
+          <capture number="2" name="container.expression.terminator"/>
         </ends-with>
         <subzones>
           <include collection="container.expressions.other"/>

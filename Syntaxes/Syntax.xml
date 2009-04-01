@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<syntax name="sourcecode.ruby">
+  <zones>
+    <!--
+      This is the basic "expression" into which most Ruby will fall. It's
+      simply any line of code, terminated by a semicolon or end of line.
+    -->
+    <zone name="container.expression">
+      <starts-with>
+        <expression></expression>
+        <capture number="0" name="container.expression.begin"/>
+      </starts-with>
+      <ends-with>
+        <expression>(?:(\n$)|(;))</expression>
+        <capture number="0" name="container.expression.end"/>
+        <capture number="1" name="container.expression.terminator"/>
+      </ends-with>
+      <subzones>
+        <include collection="expressions"/>
+      </subzones>
+    </zone>
+  </zones>
+  <library>
+    
+    <collection name="expressions">
+      
+    </collection>
+    
+  </library>
+</syntax>

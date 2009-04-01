@@ -12,6 +12,7 @@
   -->
   <zones>
     <include collection="delimiter"/>
+    <include collection="container.expression.parenthetical"/>
     <include collection="metadata.comment"/>
     <include collection="literal.string.heredoc"/>
     <include collection="keyword.control"/>
@@ -631,6 +632,22 @@
          = Containers =
          ============== -->
     
+    <collection name="container.expression.parenthetical">
+      <zone name="container.function.parenthesis-delimited">
+        <starts-with>
+          <expression>\(</expression>
+          <capture number="0" name="delimiter.balanced.parenthesis.begin"/>
+        </starts-with>
+        <ends-with>
+          <expression>\)</expression>
+          <capture number="0" name="delimiter.balanced.parenthesis.end"/>
+        </ends-with>
+        <subzones>
+          <include syntax="sourcecode.ruby"/>
+        </subzones>
+      </zone>
+    </collection>
+    
     <collection name="container.function">
       <!--
         For now, due to the intricacies of whitespace-delimited methods versus
@@ -810,12 +827,6 @@
       </zone>
       <zone name="delimiter.balanced.curly-brace.end">
         <expression>\}</expression>
-      </zone>
-      <zone name="delimiter.balanced.parenthesis.begin">
-        <expression>\(</expression>
-      </zone>
-      <zone name="delimiter.balanced.parenthesis.end">
-        <expression>\)</expression>
       </zone>
       <zone name="delimiter.balanced.square-brace.begin">
         <expression>\[</expression>

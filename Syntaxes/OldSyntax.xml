@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<syntax name="sourcecode.ruby">
+<syntax name="sourcecode.ruby.old">
   <!--
     We break this document down into a huge library of collections, and an
     utterly simplistic primary zones section that does nothing more than
@@ -322,7 +322,7 @@
           <capture number="0" name="delimiter.balanced.curly-brace.end"/>
         </ends-with>
         <subzones>
-          <include syntax="sourcecode.ruby"/>
+          <include syntax="sourcecode.ruby.old"/>
         </subzones>
       </zone>
     </collection>
@@ -650,7 +650,7 @@
           <capture number="0" name="delimiter.balanced.parenthesis.end"/>
         </ends-with>
         <subzones>
-          <include syntax="sourcecode.ruby"/>
+          <include syntax="sourcecode.ruby.old"/>
         </subzones>
       </zone>
     </collection>
@@ -800,7 +800,7 @@
           <capture number="0" name="delimiter.quote.balanced.backtick.end"/>
         </ends-with>
         <subzones>
-          <include syntax="sourcecode.ruby"/>
+          <include syntax="sourcecode.ruby.old"/>
         </subzones>
       </zone>
     </collection>

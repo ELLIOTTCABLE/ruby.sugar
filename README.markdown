@@ -55,6 +55,7 @@ TODO
   - Heredocs
   - Ranges
   - String-ish Symbol syntax (:'foo bar', :"gaz #{123}")
+  - Strange symbols (:*, :[]=, etc)
   - Arrays, including percent-delimited syntax (Might be hard, the syntax is
     so very simple)
   - Hashes

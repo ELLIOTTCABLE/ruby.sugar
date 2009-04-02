@@ -374,8 +374,9 @@
           <capture number="0" name="delimiter.balanced.slash.begin"/>
         </starts-with>
         <ends-with>
-          <expression>(/)[iomxneus]*</expression>
+          <expression>(/)([iomxneus]*)</expression>
           <capture number="1" name="delimiter.balanced.slash.end"/>
+          <capture number="2" name="literal.regex.modifier"/>
         </ends-with>
         <subzones>
           <include syntax="expression.regex"/>

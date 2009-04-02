@@ -390,8 +390,9 @@
           <capture number="3" name="delimiter.balanced.percent-delimited.begin"/>
         </starts-with>
         <ends-with>
-          <expression>(\))</expression>
+          <expression>(\))([iomxneus]*)</expression>
           <capture number="1" name="delimiter.balanced.percent-delimited.begin"/>
+          <capture number="2" name="literal.regex.modifier"/>
         </ends-with>
         <subzones>
           <include syntax="expression.regex"/>
@@ -405,8 +406,9 @@
           <capture number="3" name="delimiter.balanced.percent-delimited.begin"/>
         </starts-with>
         <ends-with>
-          <expression>(\])</expression>
+          <expression>(\])([iomxneus]*)</expression>
           <capture number="1" name="delimiter.balanced.percent-delimited.begin"/>
+          <capture number="2" name="literal.regex.modifier"/>
         </ends-with>
         <subzones>
           <include syntax="expression.regex"/>
@@ -420,8 +422,9 @@
           <capture number="3" name="delimiter.balanced.percent-delimited.begin"/>
         </starts-with>
         <ends-with>
-          <expression>(\})</expression>
+          <expression>(\})([iomxneus]*)</expression>
           <capture number="1" name="delimiter.balanced.percent-delimited.begin"/>
+          <capture number="2" name="literal.regex.modifier"/>
         </ends-with>
         <subzones>
           <include syntax="expression.regex"/>
@@ -435,8 +438,9 @@
           <capture number="3" name="delimiter.balanced.percent-delimited.begin"/>
         </starts-with>
         <ends-with>
-          <expression>(\&gt;)</expression>
+          <expression>(\&gt;)([iomxneus]*)</expression>
           <capture number="1" name="delimiter.balanced.percent-delimited.begin"/>
+          <capture number="2" name="literal.regex.modifier"/>
         </ends-with>
         <subzones>
           <include syntax="expression.regex"/>
@@ -450,8 +454,9 @@
           <capture number="3" name="delimiter.balanced.percent-delimited.begin"/>
         </starts-with>
         <ends-with>
-          <expression>(\3)</expression>
+          <expression>(\3)([iomxneus]*)</expression>
           <capture number="1" name="delimiter.balanced.percent-delimited.begin"/>
+          <capture number="2" name="literal.regex.modifier"/>
         </ends-with>
         <subzones>
           <include syntax="expression.regex"/>

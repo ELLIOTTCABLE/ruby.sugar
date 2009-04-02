@@ -30,7 +30,19 @@
     </collection>
     
     <collection name="container.expressions.other">
-      
+      <zone name="container.expression.parenthetical">
+        <starts-with>
+          <expression>\(</expression>
+          <capture number="0" name="delimiter.balanced.parenthesis.begin"/>
+        </starts-with>
+        <ends-with>
+          <expression>\)</expression>
+          <capture number="0" name="delimiter.balanced.parenthesis.end"/>
+        </ends-with>
+        <subzones>
+          <include collection="container.expressions.subzones"/>
+        </subzones>
+      </zone>
     </collection>
     
   </library>

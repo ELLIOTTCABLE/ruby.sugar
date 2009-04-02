@@ -635,26 +635,6 @@
       </zone>
     </collection>
     
-    <!-- ==============
-         = Containers =
-         ============== -->
-    
-    <collection name="container.expression.parenthetical">
-      <zone name="container.function.parenthesis-delimited">
-        <starts-with>
-          <expression>\(</expression>
-          <capture number="0" name="delimiter.balanced.parenthesis.begin"/>
-        </starts-with>
-        <ends-with>
-          <expression>\)</expression>
-          <capture number="0" name="delimiter.balanced.parenthesis.end"/>
-        </ends-with>
-        <subzones>
-          <include syntax="sourcecode.ruby.old"/>
-        </subzones>
-      </zone>
-    </collection>
-    
     <collection name="container.function">
       <!--
         For now, due to the intricacies of whitespace-delimited methods versus

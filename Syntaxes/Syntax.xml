@@ -43,6 +43,40 @@
           <include collection="container.expressions.subzones"/>
         </subzones>
       </zone>
+      <include collection="identifier.function.call"/>
+    </collection>
+    
+    <collection name="identifier.function.call">
+      <zone name="identifier.function.call.parenthetical">
+        <starts-with>
+          <expression>([a-zA-Z_][\.A-Za-z0-9_]*(?:[\?\!]|[ \t]*\=[ \t]*)?)\s*(\()</expression>
+          <capture number="1" name="name"/>
+          <capture number="2" name="delimiter.x-parameters.function.balanced.parenthesis.begin"/>
+        </starts-with>
+        <ends-with>
+          <expression>\)</expression>
+          <capture number="0" name="delimiter.x-parameters.function.balanced.parenthesis.end"/>
+        </ends-with>
+        <subzones>
+          
+        </subzones>
+      </zone>
+      <zone name="identifier.function.call.whitespace-delimited">
+        <starts-with>
+          <expression>([a-zA-Z_][\.A-Za-z0-9_]*[\?\!\=]?)([ \t]*)</expression>
+          <capture number="1" name="name"/>
+          <!-- Extending delimiter with x-parameters -->
+          <capture number="2" name="delimiter.x-parameters.function.begin"/>
+        </starts-with>
+        <ends-with>
+          <expression>\n$</expression>
+          <!-- Extending delimiter with x-parameters -->
+          <capture number="0" name="delimiter.x-parameters.function.begin"/>
+        </ends-with>
+        <subzones>
+          <include collection="identifier.variable.parameter"/>
+        </subzones>
+      </zone>
     </collection>
     
   </library>

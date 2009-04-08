@@ -65,7 +65,7 @@
       </zone>
       <zone name="identifier.function.call.whitespace-delimited">
         <starts-with>
-          <expression>(\.)?([a-zA-Z_][A-Za-z0-9_]*[\?\!\=]?)([ \t]*)</expression>
+          <expression>(\.)?([a-zA-Z_][A-Za-z0-9_]*[\?\!\=]?)([ \t]+)</expression>
           <!-- Extending delimiter with x-call -->
           <capture number="1" name="operator.x-call.function"/>
           <capture number="2" name="name"/>

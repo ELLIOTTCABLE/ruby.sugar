@@ -265,3 +265,270 @@ Something . method arg1 + 123, arg2,
                  *args, &block) . Something . method arg1 + 123, arg2,
                                                  what 456,
                                                  *args, &block
+# upper-case global Method, parenthesized arguments, newline terminated
+Method()
+Method()+123
+Method()+orly?(42)
+Method(123)
+Method(orly?(42))
+Method(arg1)+123
+Method(arg1+123)
+Method(arg1+123, arg2, what(456))
+Method(arg1+123, arg2, what(456), *args)
+Method(arg1+123, arg2, what(456), *args, &block)
+Method(arg1+123, arg2,
+       what(456),
+       *args, &block)
+# upper-case global Method, whitespace-delimited arguments, newline terminated
+Method
+Method+123
+Method+orly? 42
+Method 123
+Method orly? 42
+Method arg1 + 123
+Method arg1 + 123, arg2, what 456
+Method arg1 + 123, arg2, what 456, *args
+Method arg1 + 123, arg2, what 456, *args, &block
+Method arg1 + 123, arg2,
+       what 456,
+       *args, &block
+# upper-case instance Method, parenthesized arguments, newline terminated
+foo . Method()
+foo . Method()+123
+foo . Method()+orly?(42)
+foo . Method(123)
+foo . Method(orly?(42))
+foo . Method(arg1)+123
+foo . Method(arg1+123)
+foo . Method(arg1+123, arg2, what(456))
+foo . Method(arg1+123, arg2, what(456), *args)
+foo . Method(arg1+123, arg2, what(456), *args, &block)
+foo . Method(arg1+123, arg2,
+           what(456),
+           *args, &block)
+# upper-case instance Method, whitespace-delimited arguments, newline terminated
+foo . Method
+foo . Method+123
+foo . Method+orly? 42
+foo . Method 123
+foo . Method orly? 42
+foo . Method arg1 + 123
+foo . Method arg1 + 123, arg2, what 456
+foo . Method arg1 + 123, arg2, what 456, *args
+foo . Method arg1 + 123, arg2, what 456, *args, &block
+foo . Method arg1 + 123, arg2,
+           what 456,
+           *args, &block
+# upper-case class Method, parenthesized arguments, newline terminated
+Something . Method()
+Something . Method()+123
+Something . Method()+orly?(42)
+Something . Method(123)
+Something . Method(orly?(42))
+Something . Method(arg1)+123
+Something . Method(arg1+123)
+Something . Method(arg1+123, arg2, what(456))
+Something . Method(arg1+123, arg2, what(456), *args)
+Something . Method(arg1+123, arg2, what(456), *args, &block)
+Something . Method(arg1+123, arg2,
+                 what(456),
+                 *args, &block)
+# upper-case class Method, whitespace-delimited arguments, newline terminated
+Something . Method
+Something . Method+123
+Something . Method+orly? 42
+Something . Method 123
+Something . Method orly? 42
+Something . Method arg1 + 123
+Something . Method arg1 + 123, arg2, what 456
+Something . Method arg1 + 123, arg2, what 456, *args
+Something . Method arg1 + 123, arg2, what 456, *args, &block
+Something . Method arg1 + 123, arg2,
+                 what 456,
+                 *args, &block
+# upper-case global Method, parenthesized arguments, expression-terminator terminated
+Method(); Method()
+Method()+123; Method()+123
+Method()+orly?(42); Method()+orly?(42)
+Method(123); Method(123)
+Method(orly?(42)); Method(orly?(42))
+Method(arg1)+123; Method(arg1)+123
+Method(arg1+123); Method(arg1+123)
+Method(arg1+123, arg2, what(456)); Method(arg1+123, arg2, what(456))
+Method(arg1+123, arg2, what(456), *args); Method(arg1+123, arg2, what(456), *args)
+Method(arg1+123, arg2, what(456), *args, &block); Method(arg1+123, arg2, what(456), *args, &block)
+Method(arg1+123, arg2,
+       what(456),
+       *args, &block); Method(arg1+123, arg2,
+                              what(456),
+                              *args, &block)
+# upper-case global Method, whitespace-delimited arguments, expression-terminator terminated
+Method; Method
+Method+123; Method+123
+Method+orly? 42; Method+orly? 42
+Method 123; Method 123
+Method orly? 42; Method orly? 42
+Method arg1 + 123; Method arg1 + 123
+Method arg1 + 123, arg2, what 456; Method arg1 + 123, arg2, what 456
+Method arg1 + 123, arg2, what 456, *args; Method arg1 + 123, arg2, what 456, *args
+Method arg1 + 123, arg2, what 456, *args, &block; Method arg1 + 123, arg2, what 456, *args, &block
+Method arg1 + 123, arg2,
+       what 456,
+       *args, &block; Method arg1 + 123, arg2,
+                             what 456,
+                             *args, &block
+# upper-case instance Method, parenthesized arguments, expression-terminator terminated
+foo . Method(); foo . Method()
+foo . Method()+123; foo . Method()+123
+foo . Method()+orly?(42); foo . Method()+orly?(42)
+foo . Method(123); foo . Method(123)
+foo . Method(orly?(42)); foo . Method(orly?(42))
+foo . Method(arg1)+123; foo . Method(arg1)+123
+foo . Method(arg1+123); foo . Method(arg1+123)
+foo . Method(arg1+123, arg2, what(456)); foo . Method(arg1+123, arg2, what(456))
+foo . Method(arg1+123, arg2, what(456), *args); foo . Method(arg1+123, arg2, what(456), *args)
+foo . Method(arg1+123, arg2, what(456), *args, &block);foo . Method(arg1+123, arg2, what(456), *args, &block)
+foo . Method(arg1+123, arg2,
+           what(456),
+           *args, &block); foo . Method(arg1+123, arg2,
+                                      what(456),
+                                      *args, &block)
+# upper-case instance Method, whitespace-delimited arguments, expression-terminator terminated
+foo . Method; foo . Method
+foo . Method+123; foo . Method+123
+foo . Method+orly? 42; foo . Method+orly? 42
+foo . Method 123; foo . Method 123
+foo . Method orly? 42; foo . Method orly? 42
+foo . Method arg1 + 123; foo . Method arg1 + 123
+foo . Method arg1 + 123, arg2, what 456; foo . Method arg1 + 123, arg2, what 456
+foo . Method arg1 + 123, arg2, what 456, *args; foo . Method arg1 + 123, arg2, what 456, *args
+foo . Method arg1 + 123, arg2, what 456, *args, &block; foo . Method arg1 + 123, arg2, what 456, *args, &block
+foo . Method arg1 + 123, arg2,
+           what 456,
+           *args, &block; foo . Method arg1 + 123, arg2,
+                                     what 456,
+                                     *args, &block
+# upper-case class Method, parenthesized arguments, expression-terminator terminated
+Something . Method(); Something . Method()
+Something . Method()+123; Something . Method()+123
+Something . Method()+orly?(42); Something . Method()+orly?(42)
+Something . Method(123); Something . Method(123)
+Something . Method(orly?(42)); Something . Method(orly?(42))
+Something . Method(arg1)+123; Something . Method(arg1)+123
+Something . Method(arg1+123); Something . Method(arg1+123)
+Something . Method(arg1+123, arg2, what(456)); Something . Method(arg1+123, arg2, what(456))
+Something . Method(arg1+123, arg2, what(456), *args); Something . Method(arg1+123, arg2, what(456), *args)
+Something . Method(arg1+123, arg2, what(456), *args, &block); Something . Method(arg1+123, arg2, what(456), *args, &block)
+Something . Method(arg1+123, arg2,
+                 what(456),
+                 *args, &block); Something . Method(arg1+123, arg2,
+                                                  what(456),
+                                                  *args, &block)
+# upper-case class Method, whitespace-delimited arguments, expression-terminator terminated
+Something . Method; Something . Method
+Something . Method+123; Something . Method+123
+Something . Method+orly? 42; Something . Method+orly? 42
+Something . Method 123; Something . Method 123
+Something . Method orly? 42; Something . Method orly? 42
+Something . Method arg1 + 123; Something . Method arg1 + 123
+Something . Method arg1 + 123, arg2, what 456; Something . Method arg1 + 123, arg2, what 456
+Something . Method arg1 + 123, arg2, what 456, *args; Something . Method arg1 + 123, arg2, what 456, *args
+Something . Method arg1 + 123, arg2, what 456, *args, &block; Something . Method arg1 + 123, arg2, what 456, *args, &block
+Something . Method arg1 + 123, arg2,
+                 what 456,
+                 *args, &block; Something . Method arg1 + 123, arg2,
+                                                 what 456,
+                                                 *args, &block
+# upper-case global Method, parenthesized arguments, expression-end terminated
+(Method()) . Method()
+(Method()+123) . Method()+123
+(Method()+orly?(42)) . Method()+orly?(42)
+(Method(123)) . Method(123)
+(Method(orly?(42))) . Method(orly?(42))
+(Method(arg1)+123) . Method(arg1)+123
+(Method(arg1+123)) . Method(arg1+123)
+(Method(arg1+123, arg2, what(456))) . Method(arg1+123, arg2, what(456))
+(Method(arg1+123, arg2, what(456), *args)) . Method(arg1+123, arg2, what(456), *args)
+(Method(arg1+123, arg2, what(456), *args, &block)) . Method(arg1+123, arg2, what(456), *args, &block)
+(Method(arg1+123, arg2,
+       what(456),
+       *args, &block)) . Method(arg1+123, arg2,
+                              what(456),
+                              *args, &block)
+# upper-case global Method, whitespace-delimited arguments, expression-end terminated
+(Method) . Method
+(Method+123) . Method+123
+(Method+orly? 42) . Method+orly? 42
+(Method 123) . Method 123
+(Method orly? 42) . Method orly? 42
+(Method arg1 + 123) . Method arg1 + 123
+(Method arg1 + 123, arg2, what 456) . Method arg1 + 123, arg2, what 456
+(Method arg1 + 123, arg2, what 456, *args) . Method arg1 + 123, arg2, what 456, *args
+(Method arg1 + 123, arg2, what 456, *args, &block) . Method arg1 + 123, arg2, what 456, *args, &block
+(Method arg1 + 123, arg2,
+       what 456,
+       *args, &block) . Method arg1 + 123, arg2,
+                             what 456,
+                             *args, &block
+# upper-case instance Method, parenthesized arguments, expression-end terminated
+(foo . Method()) . foo . Method()
+(foo . Method()+123) . foo . Method()+123
+(foo . Method()+orly?(42)) . foo . Method()+orly?(42)
+(foo . Method(123)) . foo . Method(123)
+(foo . Method(orly?(42))) . foo . Method(orly?(42))
+(foo . Method(arg1)+123) . foo . Method(arg1)+123
+(foo . Method(arg1+123)) . foo . Method(arg1+123)
+(foo . Method(arg1+123, arg2, what(456))) . foo . Method(arg1+123, arg2, what(456))
+(foo . Method(arg1+123, arg2, what(456), *args)) . foo . Method(arg1+123, arg2, what(456), *args)
+(foo . Method(arg1+123, arg2, what(456), *args, &block)) . foo . Method(arg1+123, arg2, what(456), *args, &block)
+(foo . Method(arg1+123, arg2,
+           what(456),
+           *args, &block)) . foo . Method(arg1+123, arg2,
+                                      what(456),
+                                      *args, &block)
+# upper-case instance Method, whitespace-delimited arguments, expression-end terminated
+(foo . Method) . foo . Method
+(foo . Method+123) . foo . Method+123
+(foo . Method+orly? 42) . foo . Method+orly? 42
+(foo . Method 123) . foo . Method 123
+(foo . Method orly? 42) . foo . Method orly? 42
+(foo . Method arg1 + 123) . foo . Method arg1 + 123
+(foo . Method arg1 + 123, arg2, what 456) . foo . Method arg1 + 123, arg2, what 456
+(foo . Method arg1 + 123, arg2, what 456, *args) . foo . Method arg1 + 123, arg2, what 456, *args
+(foo . Method arg1 + 123, arg2, what 456, *args, &block) . foo . Method arg1 + 123, arg2, what 456, *args, &block
+(foo . Method arg1 + 123, arg2,
+           what 456,
+           *args, &block) . foo . Method arg1 + 123, arg2,
+                                     what 456,
+                                     *args, &block
+# upper-case class Method, parenthesized arguments, expression-end terminated
+(Something . Method()) . Something . Method()
+(Something . Method()+123) . Something . Method()+123
+(Something . Method()+orly?(42)) . Something . Method()+orly?(42)
+(Something . Method(123)) . Something . Method(123)
+(Something . Method(orly?(42))) . Something . Method(orly?(42))
+(Something . Method(arg1)+123) . Something . Method(arg1)+123
+(Something . Method(arg1+123)) . Something . Method(arg1+123)
+(Something . Method(arg1+123, arg2, what(456))) . Something . Method(arg1+123, arg2, what(456))
+(Something . Method(arg1+123, arg2, what(456), *args)) . Something . Method(arg1+123, arg2, what(456), *args)
+(Something . Method(arg1+123, arg2, what(456), *args, &block)) . Something . Method(arg1+123, arg2, what(456), *args, &block)
+(Something . Method(arg1+123, arg2,
+                 what(456),
+                 *args, &block)) . Something . Method(arg1+123, arg2,
+                                                  what(456),
+                                                  *args, &block)
+# upper-case class Method, whitespace-delimited arguments, expression-end terminated
+(Something . Method) . Something . Method
+(Something . Method+123) . Something . Method+123
+(Something . Method+orly? 42) . Something . Method+orly? 42
+(Something . Method 123) . Something . Method 123
+(Something . Method orly? 42) . Something . Method orly? 42
+(Something . Method arg1 + 123) . Something . Method arg1 + 123
+(Something . Method arg1 + 123, arg2, what 456) . Something . Method arg1 + 123, arg2, what 456
+(Something . Method arg1 + 123, arg2, what 456, *args) . Something . Method arg1 + 123, arg2, what 456, *args
+(Something . Method arg1 + 123, arg2, what 456, *args, &block) . Something . Method arg1 + 123, arg2, what 456, *args, &block
+(Something . Method arg1 + 123, arg2,
+                 what 456,
+                 *args, &block) . Something . Method arg1 + 123, arg2,
+                                                 what 456,
+                                                 *args, &block

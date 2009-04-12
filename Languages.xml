@@ -18,6 +18,24 @@
     
     
   </language>
+
+<language id="name.elliottcable.ERB">
+    <name>ERB</name>
+    
+    <root-zone>sourcecode.erb</root-zone>
+    
+    <detectors>
+    	<combo>
+			<extension casesensitive="false">rhtml</extension>
+			<match-content lines="2">(&lt;)(html|div|body|head|table)</match-content>
+		</combo>
+		<combo>
+			<extension casesensitive="false">erb</extension>
+			<match-content lines="2">(&lt;)(html|div|body|head|table)</match-content>
+			<match-content lines="2">(&lt;)(html|div|body|head|table)</match-content>
+		</combo>
+    </detectors>
+  </language>
   
   <meta>
     <name>Ruby</name>

@@ -34,6 +34,7 @@
 			<match-content lines="2">(&lt;)(html|div|body|head|table)</match-content>
 		</combo>
 		<extension casesensitive="false">erb</extension>
+		<extension casesensitive="false">rhtml</extension>
     </detectors>
   </language>
   

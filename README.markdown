@@ -35,7 +35,9 @@ plug this Sugar into Espresso, you won't see much interesting stuff in the way
 of highlighting.
 
 This situation will improve when we come up with a set of community standards
-and start adhering to them, until then, hang tight.
+and start adhering to them, until then, hang tight. Espresso's built-in theme
+and Sugars should all be adhering to the standard by Espresso's 1.0.2 release
+(by 1.1 at the latest).
 
 TODO
 ----

@@ -4,7 +4,7 @@
 	<!-- Ruby Source Block; <%= ... %> -->
 		<zone name="embedded.ruby">
 			<starts-with>
-				<expression>&lt;%\=</expression>
+				<expression>&lt;%</expression>
 			</starts-with>
 			<ends-with>
 				<expression>%&gt;</expression>

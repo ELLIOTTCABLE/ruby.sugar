@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <syntax name="sourcecode.erb">
 	<zones>
-	<!-- Ruby Source Block; <%= ... %> -->
+	<!-- Embedded Ruby Block; <% ... %> -->
 		<zone name="embedded.ruby">
 			<starts-with>
 				<expression>&lt;%</expression>

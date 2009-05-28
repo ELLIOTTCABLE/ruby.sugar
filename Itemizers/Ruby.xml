@@ -9,6 +9,15 @@
       <include-root-recipes/>
     </subrecipes>
   </recipe>
+
+	<recipe name="container.function.whitespace-delimited">
+    <start-selector>container.function.whitespace-delimited:has-child(name:capture(name))</start-selector>
+    <end-selector>keyword.control.flow.end</end-selector>
+    
+    <subrecipes>
+      <include-root-recipes/>
+    </subrecipes>
+	</recipe>
   
   <recipe name="block.keyword-delimited">
     <start-selector>block.declaration.keyword-delimited</start-selector>

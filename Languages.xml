@@ -25,14 +25,6 @@
     <root-zone>sourcecode.erb</root-zone>
     
     <detectors>
-      <combo>
-        <extension casesensitive="false">rhtml</extension>
-        <match-content lines="2">(&lt;)(html|div|body|head|table)</match-content>
-      </combo>
-      <combo>
-        <extension casesensitive="false">erb</extension>
-        <match-content lines="2">(&lt;)(html|div|body|head|table)</match-content>
-      </combo>
       <extension casesensitive="false">erb</extension>
       <extension casesensitive="false">rhtml</extension>
     </detectors>

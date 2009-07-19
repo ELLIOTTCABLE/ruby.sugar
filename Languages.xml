@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <settings>
-
+  
   <language id="name.elliottcable.Ruby">
     <name>Ruby</name>
     
@@ -18,23 +18,23 @@
     
     
   </language>
-
-<language id="name.elliottcable.ERB">
+  
+  <language id="name.elliottcable.ERB">
     <name>ERB</name>
     
     <root-zone>sourcecode.erb</root-zone>
     
     <detectors>
-    	<combo>
-			<extension casesensitive="false">rhtml</extension>
-			<match-content lines="2">(&lt;)(html|div|body|head|table)</match-content>
-		</combo>
-		<combo>
-			<extension casesensitive="false">erb</extension>
-			<match-content lines="2">(&lt;)(html|div|body|head|table)</match-content>
-		</combo>
-		<extension casesensitive="false">erb</extension>
-		<extension casesensitive="false">rhtml</extension>
+      <combo>
+        <extension casesensitive="false">rhtml</extension>
+        <match-content lines="2">(&lt;)(html|div|body|head|table)</match-content>
+      </combo>
+      <combo>
+        <extension casesensitive="false">erb</extension>
+        <match-content lines="2">(&lt;)(html|div|body|head|table)</match-content>
+      </combo>
+      <extension casesensitive="false">erb</extension>
+      <extension casesensitive="false">rhtml</extension>
     </detectors>
   </language>
   

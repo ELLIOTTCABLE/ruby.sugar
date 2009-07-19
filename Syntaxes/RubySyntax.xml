@@ -6,7 +6,7 @@
     `include` the correct collections in the correct order. This allows us to
     re-use groups of zones easily, as well as allowing us to order the
     elements of the document however we want to, without having to worry too
-    much about precedance (since we can re-order the include statements
+    much about precedence (since we can re-order the include statements
     however we need to, to preserve the precedence of syntax elements'
     matching rules).
   -->

@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<syntax name="name.elliottcable.Espresso.Declarative.RHTML">
+  <zones>
+    <include syntax="name.elliottcable.Espresso.Syntax.Programming.ERB"/>
+    <include syntax="text.html.basic"/>
+  </zones>
+</syntax>

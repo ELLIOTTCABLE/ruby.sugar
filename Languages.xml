@@ -26,6 +26,15 @@
     
     <detectors>
       <extension casesensitive="false">erb</extension>
+    </detectors>
+  </language>
+  
+  <language id="name.elliottcable.RHTML">
+    <name>RHTML</name>
+    
+    <root-zone>name.elliottcable.Espresso.Declarative.RHTML</root-zone>
+    
+    <detectors>
       <extension casesensitive="false">rhtml</extension>
     </detectors>
   </language>

@@ -379,7 +379,7 @@
           <capture number="2" name="literal.regex.modifier"/>
         </ends-with>
         <subzones>
-          <include syntax="expression.regex"/>
+          <include syntax="name.elliottcable.Espresso.Syntax.Expression.Regex"/>
         </subzones>
       </zone>
       <zone name="literal.regex.percent-delimited.interpolated.parenthesis">
@@ -395,7 +395,7 @@
           <capture number="2" name="literal.regex.modifier"/>
         </ends-with>
         <subzones>
-          <include syntax="expression.regex"/>
+          <include syntax="name.elliottcable.Espresso.Syntax.Expression.Regex"/>
         </subzones>
       </zone>
       <zone name="literal.regex.percent-delimited.interpolated.square-brace">
@@ -411,7 +411,7 @@
           <capture number="2" name="literal.regex.modifier"/>
         </ends-with>
         <subzones>
-          <include syntax="expression.regex"/>
+          <include syntax="name.elliottcable.Espresso.Syntax.Expression.Regex"/>
         </subzones>
       </zone>
       <zone name="literal.regex.percent-delimited.interpolated.curly-brace">
@@ -427,7 +427,7 @@
           <capture number="2" name="literal.regex.modifier"/>
         </ends-with>
         <subzones>
-          <include syntax="expression.regex"/>
+          <include syntax="name.elliottcable.Espresso.Syntax.Expression.Regex"/>
         </subzones>
       </zone>
       <zone name="literal.regex.percent-delimited.interpolated.angle-brace">
@@ -443,7 +443,7 @@
           <capture number="2" name="literal.regex.modifier"/>
         </ends-with>
         <subzones>
-          <include syntax="expression.regex"/>
+          <include syntax="name.elliottcable.Espresso.Syntax.Expression.Regex"/>
         </subzones>
       </zone>
       <zone name="literal.regex.percent-delimited.interpolated">
@@ -459,7 +459,7 @@
           <capture number="2" name="literal.regex.modifier"/>
         </ends-with>
         <subzones>
-          <include syntax="expression.regex"/>
+          <include syntax="name.elliottcable.Espresso.Syntax.Expression.Regex"/>
         </subzones>
       </zone>
     </collection>

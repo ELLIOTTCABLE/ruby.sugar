@@ -5,7 +5,7 @@
   <language id="name.elliottcable.Ruby">
     <name>Ruby</name>
     
-    <root-zone>sourcecode.ruby</root-zone>
+    <root-zone>name.elliottcable.Espresso.Syntax.Programming.Ruby</root-zone>
     
     <detectors>
       <extension casesensitive="false">r</extension>
@@ -22,7 +22,7 @@
   <language id="name.elliottcable.ERB">
     <name>ERB</name>
     
-    <root-zone>sourcecode.erb</root-zone>
+    <root-zone>name.elliottcable.Espresso.Syntax.Programming.ERB</root-zone>
     
     <detectors>
       <extension casesensitive="false">erb</extension>
@@ -34,12 +34,12 @@
     <name>Ruby</name>
     <description>A sugar that fully describes the Ruby language, and provides easy methods with which to work with Ruby source code</description>
     <author>elliottcable</author>
-    <identifier>name.elliottcable.Sugar.Ruby</identifier>
+    <identifier>name.elliottcable.Espresso.Sugar.Ruby</identifier>
     <version status="preview">0</version>
     <download format="git">git://github.com/elliottcable/ruby.sugar.git</download>
     <url>http://github.com/elliottcable/ruby.sugar</url>
     <dependencies>
-      <dependency id="name.elliottcable.Sugar.Regex">Regex</dependency>
+      <dependency id="name.elliottcable.Espresso.Sugar.Regex">Regex</dependency>
     </dependencies>
   </meta>
   

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<syntax name="sourcecode.erb">
+<syntax name="name.elliottcable.Espresso.Syntax.Programming.ERB">
   <zones>
   <!-- Embedded Ruby Block; <% ... %> -->
     <zone name="embedded.ruby">
@@ -10,7 +10,7 @@
         <expression>%&gt;</expression>
       </ends-with>
       <subzones>
-        <include syntax="sourcecode.ruby" />
+        <include syntax="name.elliottcable.Espresso.Syntax.Programming.Ruby" />
       </subzones> 
     </zone>
     <include syntax="text.html.basic" />

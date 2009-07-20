@@ -2,22 +2,22 @@
 <settings>
   
 	<setting name="comment-multiline-start">
-		<syntax-context>sourcecode.ruby, sourcecode.ruby *</syntax-context>
+		<syntax-context>name.elliottcable.Espresso.Syntax.Programming.Ruby, name.elliottcable.Espresso.Syntax.Programming.Ruby *</syntax-context>
 		<no-value/>
 	</setting>
   
 	<setting name="comment-multiline-end">
-		<syntax-context>sourcecode.ruby, sourcecode.ruby *</syntax-context>
+		<syntax-context>name.elliottcable.Espresso.Syntax.Programming.Ruby, name.elliottcable.Espresso.Syntax.Programming.Ruby *</syntax-context>
 		<no-value/>
 	</setting>
   
 	<setting name="comment-multiline-end-inert">
-		<syntax-context>sourcecode.ruby, sourcecode.ruby *</syntax-context>
+		<syntax-context>name.elliottcable.Espresso.Syntax.Programming.Ruby, name.elliottcable.Espresso.Syntax.Programming.Ruby *</syntax-context>
 		<no-value/>
 	</setting>
   
 	<setting name="comment-singleline-start">
-		<syntax-context>sourcecode.ruby, sourcecode.ruby *</syntax-context>
+		<syntax-context>name.elliottcable.Espresso.Syntax.Programming.Ruby, name.elliottcable.Espresso.Syntax.Programming.Ruby *</syntax-context>
 		<value># </value>
 	</setting>
 	

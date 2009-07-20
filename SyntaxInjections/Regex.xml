@@ -13,7 +13,7 @@
         <capture number="0" name="punctuation.interpolation.end"/>
       </ends-with>
       <subzones>
-        <include syntax="sourcecode.ruby"/>
+        <include syntax="name.elliottcable.Espresso.Syntax.Programming.Ruby"/>
       </subzones>
     </zone>
   </injection>

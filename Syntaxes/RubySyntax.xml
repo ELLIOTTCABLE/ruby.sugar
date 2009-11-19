@@ -759,7 +759,8 @@
       <!-- # A comment -->
       <zone name="metadata.comment.line">
         <starts-with>
-          <expression>#</expression>
+          <!--Should not capture #{}-->
+          <expression>#(?:[^\{])</expression>
           <capture number="0" name="metadata.comment.line.hash"/>
         </starts-with>
         <ends-with>

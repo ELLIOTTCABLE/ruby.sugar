@@ -11,7 +11,7 @@
   </recipe>
 
 	<recipe name="container.function.whitespace-delimited">
-    <start-selector>container.function.whitespace-delimited:has-child(name:capture(name))</start-selector>
+    <start-selector>container.function.whitespace-delimited:has-child(name:capture(name)), container.function.parenthesis-delimited:has-child(name:capture(name))</start-selector>
     <end-selector>keyword.control.flow.end</end-selector>
     
     <subrecipes>
@@ -20,17 +20,17 @@
 	</recipe>
   
   <recipe name="block.keyword-delimited">
-    <start-selector>block.declaration.keyword-delimited</start-selector>
-    <end-selector>keyword.flow-control.end</end-selector>
-    
+    <start-selector>container.block.keyword-delimited.without-arguments:has-child(keyword.control.flow.block.begin), container.block.keyword-delimited.with-arguments:has-child(keyword.control.flow.block.begin)</start-selector>
+    <end-selector>keyword.control.flow.end</end-selector>
     <subrecipes>
       <include-root-recipes/>
     </subrecipes>
   </recipe>
+  
   <recipe name="block.bracket-delimited">
     <!-- This should really be more exact, instead of catching all opening curly braces. -->
-    <start-selector>block.declaration.bracket-delimited, delimiter.curly.brace.open</start-selector>
-    <end-selector>delimiter.curly.brace.close</end-selector>
+    <start-selector>delimiter.balanced.curly-brace.begin</start-selector>
+    <end-selector>delimiter.balanced.curly-brace.end</end-selector>
     
     <subrecipes>
       <include-root-recipes/>

@@ -12,14 +12,20 @@ First install any and all dependencies, listed below. The instructions for
 doing so can be found on their respective homes.
 
 Clone this project somewhere, with the following:
-    
+
     git clone git://github.com/elliottcable/ruby.sugar.git ./Ruby.sugar
-    
+
 And then link it to your syntaxes directory:
-    
+
     mkdir -p "~/Library/Application Support/Espresso/Sugars/"
     ln -s "$(pwd)/Ruby.sugar" "/Users/$(whoami)/Library/Application Support/Espresso/Sugars/"
-    
+
+This project is released for public usage under the terms of the very-permissive [ISC license][] (a
+modern evolution of the MIT / BSD licenses); more information is available in [COPYING][].
+
+   [ISC license]: <http://choosealicense.com/licenses/isc/> "Information about the ISC license"
+   [COPYING]: <./COPYING.text>
+
 Dependencies
 ------------
 - [Regex.sugar](http://github.com/elliottcable/Regex.sugar "elliottcable's Regex.sugar on GitHub")
